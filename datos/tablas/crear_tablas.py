@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS Rol(
 
 sql_tabla_admins = '''
 CREATE TABLE IF NOT EXISTS Administradores(
-idAdmin INTEGER PRIMARY KEY
+    idAdmin INTEGER PRIMARY KEY,
+    
 )
 '''
 
@@ -41,10 +42,15 @@ CREATE TABLE IF NOT EXISTS Usuarios(
 sql_tabla_sesiones = '''
 CREATE TABLE IF NOT EXISTS Sesiones(
     idSessions INTEGER PRIMARY KEY,
-    date_time DATETIME
+    idUser TEXT,
+    date_time TEXT,
+    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)
 )
 '''
 
+sql_eliminar_tabla = '''
+DROP TABLE NEWS
+'''
 
 if __name__ == '__main__':
     try:
@@ -60,6 +66,8 @@ if __name__ == '__main__':
         print("Tabla administradores creada satisfactoriamente")
         conexion.execute(sql_tabla_users)
         print("Tabla usuarios creada satisfactoriamente")
+        conexion.execute(sql_tabla_sesiones)
+        print("Tabla sesiones creada satisfactoriamente")
         conexion.close()
         print('Creacion Finalizada.')
     except Exception as e:
