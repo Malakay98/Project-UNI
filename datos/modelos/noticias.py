@@ -97,3 +97,5 @@ def editComment(id, content):
     '''
     bd = BaseDeDatos()
     bd.ejecutar_sql(modificar_comentario)
+
+

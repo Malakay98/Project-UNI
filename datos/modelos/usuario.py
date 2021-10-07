@@ -68,7 +68,8 @@ def deleteUser(id_usuario):
 # Tambien podria usar "?" en vez de los parametros, esto para incluir mayor seguridad
 def login(username, email, password):
     ingresar_datos = f'''
-       SELECT * FROM Usuarios
+       SELECT idUsers, username, email, password
+       FROM Usuarios
        WHERE
        username = '{username}' AND email = '{email}' AND password = '{password}'
     '''
@@ -87,6 +88,7 @@ def createSession(idUser, dt_str):
     '''
     bd = BaseDeDatos()
     return bd.ejecutar_sql(crear_sesion_sql, True)
+
 
 def getSession(id_sesion):
     obtener_sesion_sql = f'''

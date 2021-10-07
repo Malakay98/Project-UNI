@@ -5,12 +5,20 @@ from flask import Flask, request, jsonify
 from datos.modelos.usuario import getSession
 from servicios.autenticacion import autenticacion
 from datos.modelos import noticias
+from flask import render_template
 
 
 app = Flask(__name__)
 
+
+@app.route('/', methods=['GET'])
+def getIndex():
+    return render_template('index.html')
+
+
+
 # Obtener los datos de todos los usuarios.
-@app.route('/usuarios', methods=['GET'])
+@app.route('/usuarios', methods=['GET']) #Funciona
 def obtener_usuarios():
     return jsonify(autenticacion.getUsers())
 
@@ -26,7 +34,7 @@ def obtener_usuario(id_usuario):
 
 
 # Crear un nuevo usuario
-@app.route('/usuarios', methods=['POST'])
+@app.route('/registro', methods=['POST']) #Funciona
 def crear_usuario():
     datos_usuario = request.get_json()
     if 'username' not in datos_usuario:
@@ -45,7 +53,7 @@ def crear_usuario():
 
 
 #Modificar los valores de un usuario
-@app.route('/usuarios/<id_usuario>', methods=['PUT'])
+@app.route('/usuarios/<id_usuario>', methods=['PUT']) #Funciona
 def modificar_usuario(id_usuario):
     datos_usuario = request.get_json()
     if 'username' not in datos_usuario or datos_usuario['username'] == '':
@@ -62,14 +70,14 @@ def modificar_usuario(id_usuario):
 
 
 # Elimina al usuario a partir del ID del mismo
-@app.route('/usuarios/<id_usuario>', methods=['DELETE'])
+@app.route('/usuarios/<id_usuario>', methods=['DELETE']) #Funciona
 def eliminar_usuario(id_usuario):
     autenticacion.deleteUser(id_usuario)
     return jsonify(f'Usuario eliminado. ID del usuario: ', id_usuario), 200
 
 
 # Iniciamos sesion con un usuario existente
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST']) #Funciona
 def login():
     datos_usuario = request.get_json()
     if 'username' not in datos_usuario:
@@ -87,9 +95,13 @@ def login():
 
 
 # Obtenemos la sesion del usuario
-@app.route('/login/sesion/<id_sesion>', methods=['GET'])
+@app.route('/login/<id_sesion>', methods=['GET']) #No funciona
 def obtener_sesion(id_sesion):
-    return autenticacion.validateSession(id_sesion)
+    try:
+        sesion = autenticacion.validateSession(id_sesion)
+        return jsonify(sesion)
+    except Exception:
+        return "SESION INCORRECTA O INEXISTENTE", 404
 
 if __name__ == '__main__':
     app.debug = True
