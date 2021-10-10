@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="../styles/style.css" rel="stylesheet">
-    <title>Ingresando a la Facutlad</title>
+    <title>Registrarse</title>
 </head>
+
 <body>
     <nav id="encabezado">
         <div class="title">
@@ -20,7 +24,7 @@
         </div>
         <ul class="nav_links">
             <li>
-                <a href="#">Menu</a>
+                <a href="index.html">Menu</a>
             </li>
             <li>
                 <a href="#">Materias</a>
@@ -44,12 +48,22 @@
             <div class="line3"></div>
         </div>
     </nav>
-    <div class="container">
-        <div class="ms_image"></div>
-        <h1 id="welcome">Bienvenidos</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident debitis neque fugit ratione. Consequuntur laboriosam dolore neque nihil, in quas ut atque dolorum tenetur voluptatem libero exercitationem consectetur voluptate tempora!</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nam minima quo possimus odio nobis vero, nihil consectetur debitis et maxime non sunt ullam ut velit! Numquam eveniet nobis exercitationem!</p>
+    <div class="st_image"></div>
+    <div id="container_register">
+        <form action="">
+            <label class="form_title">Registrarse</label><br>
+            <input type="text" placeholder="Usuario"><br>
+            <input type="text" placeholder="Correo"><br>
+            <input type="text" placeholder="Nombre"><br>
+            <input type="text" placeholder="Apellido"><br>
+            <input type="password" placeholder="Clave"><br>
+            <input type="password" placeholder="Confirmar Clave"><br>
+            <input type="submit" value="Crear Cuenta"><br>
+            <span><a class="register_span_a" href="login.html">Ya tienes una cuenta?<br>Inicia Sesion</a></span><br>
+            <br>
+        </form>
     </div>
     <script src="../functionality/app.js"></script>
 </body>
+
 </html>
