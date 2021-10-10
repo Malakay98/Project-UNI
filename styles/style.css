@@ -1,3 +1,5 @@
+/* PALETA DE COLORES: #6fdefa(CELESTE), #0c6401(VERDE), white */
+
 *{
     margin: 0px;
     margin: 0px;
@@ -163,4 +165,169 @@ nav a:hover {
     transform:  rotate(-35deg) translate(-3px, 1px);
     transition: transform 0.2s ease-in;
 }
+
 /*FIN DEL HEADER*/
+
+/* BODY INDEX */
+.container {
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    font-size: 24px;
+    padding: 0px;
+}
+
+
+.ms_image {
+    background-image: url("../templates/images/student.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #b6b5b5;
+    background-blend-mode: multiply;
+    position: absolute;
+    width: 100%;
+    height: 50em;
+}
+
+
+.st_image {
+    background-image: url("../templates/images/doctorwall.jpg");
+    background-size: cover;
+    background-color: #b6b5b5;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    background-position: center;
+    height: 100vh;
+}
+
+
+#welcome {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    color: #0c6401;
+    opacity: 0.7;
+    border-radius: 10px;
+}
+
+
+/* BODY LOGIN */
+
+#container_login{
+    width: 450px;
+    height: 600px;
+    background: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 70%;
+    margin-left: -175px;
+    margin-top: -250px;
+    border-radius: 10px;
+  }
+
+  #container_login:before{
+    width: 550px;
+    height: 700px;
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    bottom: 0;
+    right: 0;
+    background: inherit;
+    box-shadow: inset 0 0 0 300px rgba(255,255,255,0.2);
+    filter: blur(0px);
+  }
+
+  #container_register{
+    width: 450px;
+    height: 800px;
+    background: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: 40%;
+    left: 70%;
+    margin-left: -175px;
+    margin-top: -250px;
+    border-radius: 10px;
+  }
+
+  #container_register:before{
+    width: 550px;
+    height: 900px;
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    bottom: 0;
+    right: 0;
+    background: inherit;
+    box-shadow: inset 0 0 0 400px rgba(255,255,255,0.2);
+    filter: blur(0px);
+  }
+
+  .form_title {
+      transform: translate(5%, -150%);
+      position: absolute;
+      display: flex;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      color: white;
+  }
+
+  form{
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  input{
+    background: 0;
+    width: 200px;
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid rgba(255,255,255, 0.3);
+    margin: 20px 0;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(255,255,255, 0.8);
+  }
+
+  input[type="submit"]{
+    border: 0;
+    border-radius: 8px;
+    padding-bottom: 0;
+    height: 60px;
+    background: #56afc5;
+    color: white;
+    cursor: pointer;
+    transition: all 600ms ease-in-out;
+  }
+
+  input[type="submit"]:hover{
+    background: #6fdefa;
+  }
+
+  .login_span_a{
+    color: rgba(255,255,255, 0.5);
+    margin: 2em;
+  }
+
+  .login_span_a:hover {
+    color: rgba(255,255,255, 0.9);
+  }
+
+  .register_span_a {
+    color: rgba(255,255,255, 0.5);
+  }
+
+  .register_span_a:hover {
+    color: rgba(255,255,255, 0.9);
+  }
