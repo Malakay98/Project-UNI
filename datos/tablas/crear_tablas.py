@@ -20,7 +20,7 @@ sql_tabla_comentarios = '''
 CREATE TABLE IF NOT EXISTS Comentarios(
     id INTEGER PRIMARY KEY,
     idUser INTEGER,
-    idPost INTEGER
+    idPost INTEGER,
     content TEXT,
     FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers),
     FOREIGN KEY(idPost) REFERENCES Noticias(idNews)
@@ -69,33 +69,69 @@ CREATE TABLE IF NOT EXISTS Sesiones(
 )
 '''
 
+# 18/10/21 Creando nuevas tablas
 
-sql_eliminar_tabla = '''
-DROP TABLE Publicaciones
+sql_tabla_foro = '''
+CREATE TABLE IF NOT EXISTS Foro(
+    idForum INTEGER PRIMARY KEY,
+    idUser INTEGER,
+    content TEXT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+
+    UNIQUE(idForum, idUser)
+    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers) ON DELETE CASCADE
+)
 '''
 
+sql_talba_comentarios_foro = '''
+CREATE TABLE IF NOT EXISTS ComentariosForo(
+    id INTEGER PRIMARY KEY,
+    idForum INTEGER,
+    idUser INTEGER,
+    date_time TEXT,
+    content TEXT,
+    FOREIGN KEY(idForum) REFERENCES Foro(idForum),
+    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)
+)
+'''
+
+sql_tabla_materias = '''
+CREATE TABLE IF NOT EXISTS Materias(
+    idCourse INTEGER PRIMARY KEY,
+    courseName TEXT,
+    professor TEXT,
+    content TEXT
+)
+'''
 
 if __name__ == '__main__':
     try:
         print('Creando Base de datos..')
         conexion = sqlite3.connect('Universidad.db')
+        cursor = conexion.cursor()
 
         print('Creando Tablas..')
-        conexion.execute(sql_eliminar_tabla)
-        print("Tabla eliminada")
-        conexion.execute(sql_tabla_noticias)
+        cursor.execute(sql_tabla_noticias)
         print("Tabla noticias creada satisfactoriamente")
-        conexion.execute(sql_tabla_comentarios)
+        cursor.execute(sql_tabla_comentarios)
         print('Tabla comentarios creada satisfactoriamente')
-        conexion.execute(sql_tabla_rol)
+        cursor.execute(sql_tabla_rol)
         print("Tabla roles creada satisfactoriamente")
-        conexion.execute(sql_tabla_admins)
+        cursor.execute(sql_tabla_admins)
         print("Tabla administradores creada satisfactoriamente")
-        conexion.execute(sql_tabla_users)
+        cursor.execute(sql_tabla_users)
         print("Tabla usuarios creada satisfactoriamente")
-        conexion.execute(sql_tabla_sesiones)
+        cursor.execute(sql_tabla_sesiones)
         print("Tabla sesiones creada satisfactoriamente")
-        conexion.close()
+        cursor.execute(sql_tabla_foro)
+        print("Tabla foro creada exitosamente")
+        cursor.execute(sql_talba_comentarios_foro)
+        print("Tabla de comentarios del foro creada exitosamente")
+        cursor.execute(sql_tabla_materias)
+        print("Tabla materias creada exitosamente")
+        cursor.close()
         print('Creacion Finalizada.')
     except Exception as e:
         print(f'Error creando base de datos: {e}', e)

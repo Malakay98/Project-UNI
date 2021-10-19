@@ -1,4 +1,3 @@
-from servidor import eliminar_usuario, modificar_usuario
 from datos.base_de_datos import BaseDeDatos
 
 def getAllNews():

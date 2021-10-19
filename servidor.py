@@ -13,8 +13,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def getIndex():
-    return render_template('index.html')
-
+    return render_template('inicio.html')
 
 
 # Obtener los datos de todos los usuarios.
@@ -34,7 +33,7 @@ def obtener_usuario(id_usuario):
 
 
 # Crear un nuevo usuario
-@app.route('/registro', methods=['POST']) #Funciona
+@app.route('/usuarios', methods=['POST']) #Funciona
 def crear_usuario():
     datos_usuario = request.get_json()
     if 'username' not in datos_usuario:
@@ -76,6 +75,26 @@ def eliminar_usuario(id_usuario):
     return jsonify(f'Usuario eliminado. ID del usuario: ', id_usuario), 200
 
 
+@app.route('/foro', methods=['GET'])
+def obtener_foros():
+    return jsonify(autenticacion.getForums())
+
+
+@app.route('/foro/<id_forum>', methods=['GET'])
+def obtener_foro(id_forum):
+    try:
+        usuario = autenticacion.getForum(id_forum)
+        return jsonify(usuario)
+    except Exception:
+        return 'Usuario no encontrado', 404
+
+
+@app.route('/foro', methods=['POST'])
+def crear_foro():
+    datos_foro = request.get_json()
+    pass
+
+
 # Iniciamos sesion con un usuario existente
 @app.route('/login', methods=['POST']) #Funciona
 def login():
@@ -94,15 +113,7 @@ def login():
         return f"Usuario, correo o clave equivocada, intentelo de nuevo", 200
 
 
-# Obtenemos la sesion del usuario
-@app.route('/login/<id_sesion>', methods=['GET']) #No funciona
-def obtener_sesion(id_sesion):
-    try:
-        sesion = autenticacion.validateSession(id_sesion)
-        return jsonify(sesion)
-    except Exception:
-        return "SESION INCORRECTA O INEXISTENTE", 404
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port=3000)
+    app.run(port=5001)

@@ -1,5 +1,7 @@
 from datetime import datetime
 from datos.modelos import usuario as modelo_usuario
+from datos.modelos import noticias as modelo_noticias
+from datos.modelos import foro as modelo_foro
 
 
 def userExist(username, email, password):
@@ -43,6 +45,7 @@ def login(username, email, password):
     else:
         raise Exception("El usuario no existe o la clave es invalida")
 
+
 def validateSession(id_sesion):
     sesiones = modelo_usuario.getSession(id_sesion)
     if len(sesiones) == 0:
@@ -52,3 +55,28 @@ def validateSession(id_sesion):
         return False
     else:
         return True
+
+
+def getForums():
+    return modelo_foro.getForums()
+
+
+def getForum(id_forum):
+    forum = modelo_foro.getOneForum(id_forum)
+    if len(forum) == 0:
+        raise Exception("Publicacion en el foro no encontrada")
+    return forum[0]
+
+
+def createForum(id_forum, content):
+    return modelo_foro.createForum(id_forum, content)
+
+
+def deleteForum(id_forum):
+    return modelo_foro.deleteForum(id_forum)
+
+
+def editForum(id_forum, content):
+    return modelo_foro.editForum(id_forum, content)
+
+
