@@ -3,22 +3,19 @@ import sqlite3
 
 sql_tabla_noticias = '''
 CREATE TABLE IF NOT EXISTS Noticias(
-    idNews INTEGER PRIMARY KEY,
+    idNews INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER,
+    title TEXT,
     description TEXT,
     photo TEXT,
-    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    UNIQUE(idNews, idUser)
-    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers) ON DELETE CASCADE
+    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)
 )
 '''
 
 
 sql_tabla_comentarios = '''
 CREATE TABLE IF NOT EXISTS Comentarios(
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER,
     idPost INTEGER,
     content TEXT,
@@ -30,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Comentarios(
 
 sql_tabla_rol = '''
 CREATE TABLE IF NOT EXISTS Rol(
-    idRol INTEGER PRIMARY KEY, 
+    idRol INTEGER PRIMARY KEY AUTOINCREMENT, 
     rolDescription TEXT
 )
 '''
@@ -38,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Rol(
 
 sql_tabla_admins = '''
 CREATE TABLE IF NOT EXISTS Administradores(
-    idAdmin INTEGER PRIMARY KEY,
+    idAdmin INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER,
     FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)    
 )
@@ -47,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Administradores(
 
 sql_tabla_users = '''
 CREATE TABLE IF NOT EXISTS Usuarios(
-    idUsers INTEGER PRIMARY KEY,
+    idUsers INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
     email TEXT,
     password TEXT,
@@ -62,7 +59,7 @@ CREATE TABLE IF NOT EXISTS Usuarios(
 
 sql_tabla_sesiones = '''
 CREATE TABLE IF NOT EXISTS Sesiones(
-    idSessions INTEGER PRIMARY KEY,
+    idSessions INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER,
     date_time TEXT,
     FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)
@@ -73,21 +70,17 @@ CREATE TABLE IF NOT EXISTS Sesiones(
 
 sql_tabla_foro = '''
 CREATE TABLE IF NOT EXISTS Foro(
-    idForum INTEGER PRIMARY KEY,
+    idForum INTEGER PRIMARY KEY AUTOINCREMENT,
     idUser INTEGER,
+    title TEXT,
     content TEXT,
-    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    
-
-    UNIQUE(idForum, idUser)
-    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers) ON DELETE CASCADE
+    FOREIGN KEY(idUser) REFERENCES Usuarios(idUsers)
 )
 '''
 
 sql_talba_comentarios_foro = '''
 CREATE TABLE IF NOT EXISTS ComentariosForo(
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     idForum INTEGER,
     idUser INTEGER,
     date_time TEXT,
@@ -99,12 +92,15 @@ CREATE TABLE IF NOT EXISTS ComentariosForo(
 
 sql_tabla_materias = '''
 CREATE TABLE IF NOT EXISTS Materias(
-    idCourse INTEGER PRIMARY KEY,
+    idCourse INTEGER PRIMARY KEY AUTOINCREMENT,
     courseName TEXT,
     professor TEXT,
     content TEXT
 )
 '''
+
+
+
 
 if __name__ == '__main__':
     try:
@@ -131,6 +127,8 @@ if __name__ == '__main__':
         print("Tabla de comentarios del foro creada exitosamente")
         cursor.execute(sql_tabla_materias)
         print("Tabla materias creada exitosamente")
+        #cursor.execute(sql_eliminar_tabla)
+        #print("tabla eliminada")
         cursor.close()
         print('Creacion Finalizada.')
     except Exception as e:

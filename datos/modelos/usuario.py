@@ -66,20 +66,42 @@ def deleteUser(id_usuario):
     bd.ejecutar_sql(eliminar_usuario_sql)
 
 # Tambien podria usar "?" en vez de los parametros, esto para incluir mayor seguridad
-def login(username, email, password):
-    ingresar_datos = f'''
-       SELECT idUsers, username, email, password
+
+def getUsersByFiveParamRegister(username, email, firstName, lastName, password):
+    ingresar_datos_sql = f'''
+       SELECT idUsers, username, email, firstName, lastName, password
        FROM Usuarios
        WHERE
-       username = '{username}' AND email = '{email}' AND password = '{password}'
+       username = '{username}' AND email = '{email}' AND firstName = '{firstName}' AND lastName = '{lastName}' AND password = '{password}'
     '''
     bd = BaseDeDatos()
-    return [{"idUsers": registro[0],
-             'username': registro[1],
-             "email": registro[2],
-             "password": registro[3]
-             } for registro in bd.ejecutar_sql(ingresar_datos)]
+    result = bd.ejecutar_sql(ingresar_datos_sql)
+    if result:
+        return {"idUsers": result[0][0],
+                "username": result[0][1],
+                "email": result[0][2],
+                "firstName": result[0][3],
+                "lastName": result[0][4],
+                "password": result[0][5]}
+    else:
+        return None
 
+
+def getUsersByTwoParamLogin(email, password):
+    ingresar_datos = f'''
+       SELECT idUsers, email, password
+       FROM Usuarios
+       WHERE
+       email = '{email}' AND password = '{password}'
+    '''
+    bd = BaseDeDatos()
+    result = bd.ejecutar_sql(ingresar_datos)
+    if result:
+        return {"idUsers": result[0][0],
+                 "email": result[0][1],
+                 "password": result[0][2]}
+    else:
+        None
 
 def createSession(idUser, dt_str):
     crear_sesion_sql = f'''
@@ -92,7 +114,9 @@ def createSession(idUser, dt_str):
 
 def getSession(id_sesion):
     obtener_sesion_sql = f'''
-       SELECT idSessions, idUser, date_time FROM Sesiones WHERE idSessions = {id_sesion}
+       SELECT idSessions, idUser, date_time 
+       FROM Sesiones 
+       WHERE idSessions = {id_sesion}
     '''
     bd = BaseDeDatos()
     return [{"idSessions": registro[0],

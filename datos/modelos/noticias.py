@@ -2,41 +2,42 @@ from datos.base_de_datos import BaseDeDatos
 
 def getAllNews():
     obtener_noticias = f'''
-    SELECT * FROM Publicaciones
+    SELECT idNews, idUser, title, description, photo FROM Noticias
     '''
     bd = BaseDeDatos()
-    return [{'idPost': registro[0],
-             'idUser': registro[1],
-             'description': registro[2],
-             'photo': registro[3],
-             'createdAt': registro[4]
-             } for registro in bd.ejecutar_sql(obtener_noticias)]
+    return bd.ejecutar_sql(obtener_noticias)
 
 
-def getOneNew(id_post):
-    obtener_una_noticias = f'''
-    SELECT * FROM Publicaciones
-    WHERE idPost = {id_post}
+def getOneNew(id_new):
+    obtener_una_noticia = f'''
+    SELECT idNews, idUser, title, description, photo
+    FROM Noticias
+    WHERE idNews = {id_new}
     '''
     bd = BaseDeDatos()
-    return[{'idPost': registro[0],
-             'idUser': registro[1],
-             'description': registro[2],
-             'photo': registro[3],
-             'createdAt': registro[4]
-             } for registro in bd.ejecutar_sql(obtener_una_noticias)]
+    result = bd.ejecutar_sql(obtener_una_noticia)
+    if result:
+        return {'idPost': result[0][0],
+                 'idUser': result[0][1],
+                 'title': result[0][2],
+                 'description': result[0][3],
+                 'photo': result[0][4]}
+    else:
+        return None
 
 
-def saveNew(id_post, content):
-    crear_noticia = f'''
-    INSERT INTO Noticias (idNews, description)
-    VALUES({id_post}, {content})
+def createNew(title, content, photo):
+    crear_noticia_sql = f'''
+       INSERT INTO Noticias (title, description, photo)
+       VALUES('{title}', '{content}', '{photo}')
     '''
     bd = BaseDeDatos()
-    return[{'idPost': registro[0],
-             'idUser': registro[1],
-             'description': registro[2]
-             } for registro in bd.ejecutar_sql(crear_noticia)]
+    return [{
+             'title': registro[0],
+             'description': registro[1],
+             'photo': registro[2]}
+             for registro in bd.ejecutar_sql(crear_noticia_sql)]
+
 
 def deleteNew(id_post):
     eliminar_noticia = f'''
@@ -47,10 +48,10 @@ def deleteNew(id_post):
     return db.ejecutar_sql(eliminar_noticia)
 
 
-def editNew(id_post, content):
+def editNew(id_post, datos_noticias):
     editar_noticia = f'''
     UPDATE Noticias
-    SET description = {content}
+    SET title = '{datos_noticias["title"]}', description = '{datos_noticias["description"]}'
     WHERE idNews = {id_post}
     '''
     db = BaseDeDatos()

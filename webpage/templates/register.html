@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link href="../static/styles/userStyle.css" rel="stylesheet">
+    <title>Registrarse</title>
+</head>
+
+<body>
+    <section class="encabezado">
+        <nav>
+            <div class="title">
+                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+            </div>
+            <div class="nav_links" id="navLinks">
+                <i class="fa fa-times" onclick="closeMenu()"></i>
+                <ul>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('login') }}">Iniciar Sesion</a>
+                    </li>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('register') }}">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+    <div class="formBox">
+        <div class="titleBox">
+            <div id="title"><h1>Registrarse</h1></div>
+        </div>
+        <form id="register" action="" method="post" autocomplete="off" class="inputsForm2">
+            <input class="inputsField" type="text" id="username" name="username" placeholder="Usuario" value="{{ request.form.username }}" required>
+
+            <input class="inputsField" type="text" id="email" name="email" placeholder="Correo" value="{{ request.form.email }}" required>
+
+            <input class="inputsField" type="text" id="firstName" name="firstName" placeholder="Nombre" value="{{ request.form.firstName }}" required>
+
+            <input class="inputsField" type="text" id="lastName" name="lastName" placeholder="Apellido" value="{{ request.form.lastName }}" required>
+
+            <input class="inputsField" type="password" id="password" name="password" placeholder="Clave" value="{{ request.form.password }}" required>
+            <button class="submitBtn" type="submit">Registrarse</button>
+        </form>
+        {% if error %}
+        <p><strong>Error:</strong> {{ error }}</p>
+        {% endif %}
+    </div>
+    </section>
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>
