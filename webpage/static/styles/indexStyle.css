@@ -1,0 +1,404 @@
+
+/* SCROLL BAR */
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: #96b7f5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #0d00bd;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1d75b4;
+  border-radius: 10px;
+}
+
+/* END OF THE SCROLL BAR */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+body {
+  background-image: linear-gradient(
+    rgba(27, 46, 153, 0.774),
+    rgba(122, 155, 247, 0.767)
+  );
+}
+
+
+.encabezado {
+  min-height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(4, 10, 43, 0.7), rgba(4, 9, 30, 0.7)),
+    url("../img/studentBig.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+
+nav {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  padding: 1% 3%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+nav img {
+  width: 250px;
+}
+
+
+.nav_links {
+  flex: 1;
+  text-align: right;
+}
+
+
+.nav_links ul li {
+  position: relative;
+  letter-spacing: 2px;
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+}
+
+
+.nav_links ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+.nav_links ul li::after {
+  content: "";
+  width: 0%;
+  height: 2.5px;
+  background: #2ca8ff;
+  display: block;
+  margin: auto;
+  transition: 0.5s ease-in-out;
+}
+
+
+.nav_links ul li:hover::after {
+  width: 100%;
+}
+
+.anchorsNav {
+  transition: 0.5s;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.indexWelcome {
+  font-family: "Roboto", sans-serif;
+  width: 90%;
+  color: #cacaca;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.indexWelcome h3 {
+  font-size: 25px;
+  text-align: left;
+}
+
+.indexWelcome h1 {
+  font-size: 65px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.indexWelcome p {
+  margin: 20px 0 40px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.buttonIndex {
+  display: inline-block;
+  text-decoration: none;
+  color: #cccccc;
+  border: 1px solid #ffffff;
+  padding: 12px 34px;
+  font-size: 15px bold;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.buttonIndex:hover {
+  color: #ffffff;
+  background-color: #2ca8ff;
+  transition: 0.5s;
+}
+
+nav .fa {
+  display: none;
+}
+
+.fa-arrow-down {
+  color: #cccccc;
+  font-size: 130px;
+}
+
+@media (max-width: 700px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  nav img {
+    margin-top: 4px;
+  }
+  .indexWelcome {
+    transform: translate(-50%, -10%);
+    text-align: center;
+  }
+  .indexWelcome h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+  .indexWelcome h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .indexWelcome p {
+    font-size: 10px;
+    text-align: center;
+  }
+  .nav_links ul li {
+    display: block;
+  }
+  .nav_links {
+    position: absolute;
+    background: #5878ca;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -200px;
+    text-align: center;
+    z-index: 2;
+    transition: 1s;
+  }
+  nav .fa {
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  nav .fa:hover {
+    color: #2ca8ff;
+    transition: 0.5s ease-in-out;
+  }
+  .nav_links ul {
+    padding: 10px;
+  }
+}
+
+/* ------ news ------ */
+
+.news {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.news h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #07657c;
+  font-size: 60px;
+  padding: 0px;
+}
+
+.p_newsTitle {
+  color: #464646;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+.p_news {
+  font-family: "Roboto", sans-serif;
+  color: #7c7c7c;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+.row {
+  margin: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-col {
+  flex-basis: 31%;
+  background: #f8cccc;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.news h3 {
+  font-family: "Poppins", sans-serif;
+  color: #7c7c7c;
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.news-col:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/*  |  MATERIAS |    */
+
+
+/* |  Materias : facultad boton  |  */
+
+.material {
+  background-image: linear-gradient(rgba(4, 10, 43, 0.7), rgba(4, 9, 30, 0.7)),
+  url("../img/student2.jpg");
+  background-attachment: fixed;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+
+.material_h1 {
+  font-family: "Poppins", sans-serif;
+  color: #cacaca;
+  font-size: 60px;
+  padding: 20px;
+}
+
+.material_p{
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  transform: translate(12%, -0%);
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  color: #cacaca;
+}
+
+.material_col {
+  margin: 10px;
+  flex-basis: 20%;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.material_col:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.material_col img {
+  max-height:100%; 
+  max-width:100%;
+}
+
+
+.layer a {
+  text-decoration: none;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  padding: 30px;
+  font-size: 25px;
+  font-weight: 600;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  box-shadow: 10px 20px 20px 20px rgba(0, 0, 0, 0.9);
+}
+
+
+/*  | FORO |  */
+
+.postHome {
+  font-family: "Roboto", sans-serif;
+  width: 80%;
+  margin: auto;
+  padding: 40px;
+}
+
+.post_h1 {
+  font-family: "Poppins", sans-serif;
+  color: #01708b;
+  font-size: 60px;
+  padding: 20px;
+  text-align: center;
+}
+
+.post_p {
+  color: rgb(223, 219, 219);
+  text-align: center;
+}
+
+.makePost {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: #d4f4f5;
+  color: #0567c9;
+  padding: 15px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.threads {
+  margin: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #547bfa;
+  padding: 10px;
+}
+
+.rowPost {
+  background-color: rgba(250, 250, 250, 0.4);
+  border-radius: 5px;
+  margin: 10px;
+  list-style-type: none;
+  padding: 15px;
+}

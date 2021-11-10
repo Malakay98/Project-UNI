@@ -1,0 +1,64 @@
+[
+    {
+        "email": "alf@gmail.com",
+        "firstName": "Alfred",
+        "idUsers": 1,
+        "id_Rol": null,
+        "lastName": "Perez",
+        "password": "lalalala",
+        "username": "AlPerez"
+    },
+    {
+        "email": "hernfer@gmail.com",
+        "firstName": "Hernan",
+        "idUsers": 3,
+        "id_Rol": null,
+        "lastName": "Ferme",
+        "password": "1246782",
+        "username": "Tenchu2"
+    },
+    {
+        "email": "marvelGaston@gmail.com",
+        "firstName": "Gaston",
+        "idUsers": 4,
+        "id_Rol": null,
+        "lastName": "Gonzalez",
+        "password": "1dsadsada",
+        "username": "MJspiderman"
+    },
+    {
+        "email": "airbagRuben@gmail.com",
+        "firstName": "Ruben",
+        "idUsers": 5,
+        "id_Rol": null,
+        "lastName": "Arlotto",
+        "password": "valorantNoSuboARadiante",
+        "username": "BonRubenJovi"
+    },
+    {
+        "email": "hordeMantra@gmail.com",
+        "firstName": "Camilo",
+        "idUsers": 6,
+        "id_Rol": null,
+        "lastName": "Perdomo",
+        "password": "NoSalgoDeMiCasa",
+        "username": "WoWCamilo"
+    },
+    {
+        "email": "AgusCSGO@gmail.com",
+        "firstName": "Agustin",
+        "idUsers": 7,
+        "id_Rol": null,
+        "lastName": "Baccarezza",
+        "password": "juegoTodoElDia123",
+        "username": "BaccarezzaV"
+    },
+    {
+        "email": "papapa@gmail.com",
+        "firstName": "jsjajsrsasasased",
+        "idUsers": 8,
+        "id_Rol": null,
+        "lastName": "Psjskaslhz",
+        "password": "jijijaja",
+        "username": "MORTal"
+    }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link href="../static/styles/profileStyle.css" rel="stylesheet">
+    <title>Ingresando a la Facutlad</title>
+</head>
+
+<body>
+    <section class="encabezado">
+        <nav>
+            <div class="title">
+                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+            </div>
+            <div class="nav_links" id="navLinks">
+                <i class="fa fa-times" onclick="closeMenu()"></i>
+                <ul>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('home') }}">Menu</a>
+                    </li>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('forum') }}">Foro</a>
+                    </li>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('news') }}">Noticias</a>
+                    </li>
+                    <li>
+                        <a id="a_prev" href="#">Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="profileBox">
+            <div class="photo_col">
+                <img class="photo_profile" src="../static/img/ariana.jpg" width="100px">
+                <h3>Ariana Grande</h3>
+                <ul>
+                    <li>
+                        <h4>28 años</h4>
+                    </li>
+                    <li>
+                        <h4>Estudiante primer año</h4>
+                    </li>
+                </ul>
+            </div>
+            <div class="personal_col">
+                <div class="about_profile">
+                    <h3>Sobre mi:</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, sapiente ratione ut accusamus
+                        explicabo tenetur architecto earum? Dolorum, delectus officia cumque, odio consequuntur aut id
+                        similique voluptatibus eligendi vero hic.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>

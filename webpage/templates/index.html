@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link href="../static/styles/indexStyle.css" rel="stylesheet">
+    <title>Ingresando a la Facutlad</title>
+</head>
+
+<body>
+    <section class="encabezado">
+        <nav>
+            <div class="title">
+                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+            </div>
+            <div class="nav_links" id="navLinks">
+                <i class="fa fa-times" onclick="closeMenu()"></i>
+                <ul>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('login') }}">Iniciar Sesion</a>
+                    </li>
+                    <li>
+                        <a id="a_prev" href="{{ url_for('register') }}">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="indexWelcome">
+            <h3>Conecta, comparte y aprende.</h3>
+            <h1>Estudia medicina desde<br> un nuevo angulo.</h1>
+            <p>Cada carrera exitosa comienza con una buena educacion.<br>Con nosotros, descubre la facilidad de poder
+                comunicarte con tus mentores, acceder a la bibliografia necesaria<br> y estar al tanto de las novedades
+                de la Facultad. En Ingresando a la Facultad queremos facilitar tus primeros años de vida universitaria.
+            </p>
+            <a href="{{ url_for('register') }}" class="buttonIndex"> Ingresa Ya Mismo! </a>
+        </div>
+    </section>
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>

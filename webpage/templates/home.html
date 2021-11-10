@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link href="../static/styles/indexStyle.css" rel="stylesheet">
+    <title>Ingresando a la Facutlad</title>
+</head>
+
+<body>
+    <section class="encabezado">
+        <nav>
+            <div class="title">
+                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+            </div>
+            <div class="nav_links" id="navLinks">
+                <i class="fa fa-times" onclick="closeMenu()"></i>
+                <ul>
+                    <li>
+                        <a class="anchorsNav" href="#news">Noticias</a>
+                    </li>
+                    <li>
+                        <a class="anchorsNav" href="#material">Materias</a>
+                    </li>
+                    <li>
+                        <a class="anchorsNav" href="#forum">Foro</a>
+                    </li>
+                    <li>
+                        <a href="#">Cerrar Sesion</a>
+                    </li>
+                </ul>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="indexWelcome">
+            <h3>Conecta, comparte y aprende.</h3>
+            <h1>Estudia medicina desde<br> un nuevo angulo.</h1>
+            <p>Cada carrera exitosa comienza con una buena educacion.<br>Con nosotros, descubre la facilidad de poder
+                comunicarte con tus mentores, acceder a la bibliografia necesaria<br> y estar al tanto de las
+                novedadesde la Facultad. En Ingresando a la Facultad queremos facilitar tus primeros años de vida
+                universitaria.
+            </p>
+            <p>DESLIZA Y DESCUBRE</p>
+            <i class="fa fa-arrow-down" id="arrow" aria-hidden="true"></i>
+        </div>
+    </section>
+
+    <!-----  NOTICIAS  ----->
+
+    <section class="news" id="news">
+        <h1>Noticias</h1>
+        <p class="p_newsTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="row">
+            <div class="news-col">
+                <h3>Facultad</h3>
+                <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
+                    voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
+                    consequuntur earum natus corporis, eveniet deserunt.</p>
+            </div>
+            <div class="news-col">
+                <h3>Medicina</h3>
+                <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
+                    voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
+                    consequuntur earum natus corporis, eveniet deserunt.</p>
+            </div>
+            <div class="news-col">
+                <h3>EVA</h3>
+                <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
+                    voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
+                    consequuntur earum natus corporis, eveniet deserunt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-----  MATERIAS  ----->
+
+    <section class="material" id="material">
+        <h1 class="material_h1">Materias</h1>
+        <p class="material_p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque blanditiis non sapiente
+            vero impedit at a fugiat laborum quibusdam possimus perspiciatis nam, eveniet ipsam repellendus ex voluptate
+            et labore eligendi?</p>
+        <div class="row">
+            <div class="material_col">
+                <img src="../static/img/AT.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">AT</a>
+                </div>
+            </div>
+            <div class="material_col">
+                <img src="../static/img/AT.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">AT2</a>
+                </div>
+            </div>
+            <div class="material_col">
+                <img src="../static/img/bcm.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">BCM</a>
+                </div>
+            </div>
+            <div class="material_col">
+                <img src="../static/img/bcm.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">IBCM</a>
+                </div>
+            </div>
+            <div class="material_col">
+                <img src="../static/img/ibest.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">IBEST</a>
+                </div>
+            </div>
+            <div class="material_col">
+                <img src="../static/img/spyh.png">
+                <div class="layer">
+                    <a href="http://www.fmed.edu.uy/">SPYH</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--   | FORO |   -->
+
+
+    <section class="postHome" id="forum">
+        <h1 class="post_h1">Foro</h1>
+        <p class="post_p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, perspiciatis consectetur?
+            Itaque, iusto quisquam. Praesentium totam unde sunt architecto sapiente sit labore deserunt laboriosam eius.
+            Hic accusamus blanditiis nam nulla!</p>
+        <div class="threads">
+            <button class="makePost">Crea una Publicación</button>
+            <ol>
+                <li class="rowPost">
+                    <h4 class="titlePost">
+                        Thread 1
+                    </h4>
+                    <div class="bottomPost">
+                        <p class="timestamp">
+                            04/11/21
+                        </p>
+                        <p class="comment_count">
+                            4 Comments
+                        </p>
+                    </div>
+                </li>
+                <li class="rowPost">
+                    <h4 class="titlePost">
+                        Thread 1
+                    </h4>
+                    <div class="bottomPost">
+                        <p class="timestamp">
+                            04/11/21
+                        </p>
+                        <p class="comment_count">
+                            4 Comments
+                        </p>
+                    </div>
+                </li>
+                <li class="rowPost">
+                    <h4 class="titlePost">
+                        Thread 1
+                    </h4>
+                    <div class="bottomPost">
+                        <p class="timestamp">
+                            04/11/21
+                        </p>
+                        <p class="comment_count">
+                            4 Comments
+                        </p>
+                    </div>
+                </li>
+                <li class="rowPost">
+                    <h4 class="titlePost">
+                        Thread 1
+                    </h4>
+                    <div class="bottomPost">
+                        <p class="timestamp">
+                            04/11/21
+                        </p>
+                        <p class="comment_count">
+                            4 Comments
+                        </p>
+                    </div>
+                </li>
+                <li class="rowPost">
+                    <h4 class="titlePost">
+                        Thread 1
+                    </h4>
+                    <div class="bottomPost">
+                        <p class="timestamp">
+                            04/11/21
+                        </p>
+                        <p class="comment_count">
+                            4 Comments
+                        </p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+    <script src="../static/js/app.js"></script>
+</body>
+
+</html>
