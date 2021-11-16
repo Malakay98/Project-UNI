@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, session, jsonify, render_template
 from servicios.autenticacion import autenticacion
-from flask import render_template
 
 app = Flask(__name__)
-
+app.secret_key = "unaClaveMuySeguraQueDeberiaSerAlmacenadaEn .env"
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -53,6 +52,7 @@ def crear_usuario():
         return 'La clave es requerida', 400
     autenticacion.createUsers(datos_usuario['username'], datos_usuario['email'], datos_usuario['firstName'],
                               datos_usuario['lastName'], datos_usuario['password'])
+    
     return jsonify(f'Usuario creado exitosamente. Usuario: ',
                    datos_usuario), 200  # Codigo de estado "200": informa que todo se ha procesado de manera correcta.
 
@@ -111,11 +111,16 @@ def obtener_foro(id_forum):
 @app.route('/foro', methods=['GET', 'POST'])  # Funciona
 def crear_foro():
     datos_foro = request.get_json()
+    try:
+        idUser = session['idUser']
+    except:
+        return 'Debes estar logeado para crear un foro.'
+
     if 'title' not in datos_foro:
         return 'Falta un titulo', 400
     if 'content' not in datos_foro:
         return 'La descripcion no puede estar vacia', 400
-    autenticacion.createForum(datos_foro['title'], datos_foro['content'])
+    autenticacion.createForum(datos_foro['title'], datos_foro['content'], idUser)
     return jsonify('Publicacion creada exitosamente', datos_foro), 200
 
 
@@ -211,9 +216,9 @@ def login():
         return 'El usuario es requerido', 400
     if 'password' not in datos_usuario:
         return 'La clave es requerida', 400
-    id_sesion = autenticacion.login(datos_usuario['username'], datos_usuario['password'])
-    if id_sesion:
-        return f"Usuario logueado exitosamente: idSession {id_sesion}", 200
+    autenticacion.login(datos_usuario['username'], datos_usuario['password'])
+    if session.get('idUser', None) is not None:
+        return f"Usuario logueado exitosamente: idSession {session['idUser']}", 200
     else:
         return f"Usuario, correo o clave equivocada, intentelo de nuevo", 400
 

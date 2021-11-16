@@ -30,5 +30,4 @@ class BaseDeDatos:
         self.conexion.commit()
         # Cerramos la conexion con la funcion previamente creada
         self._cerrar_conexion()
-
         return filas
