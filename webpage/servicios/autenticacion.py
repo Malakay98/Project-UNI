@@ -1,13 +1,14 @@
 from webpage.servicios import rest_api
 import requests
+from flask import session
 
 def ingresar_inicio():
     respuesta = requests.post(f'{rest_api.API_URL}/index')
     return respuesta.json()
 
 
-def validar_credenciales(email, clave):
-    body = {"email": email,
+def validar_credenciales(username, clave):
+    body = {"username": username,
             "password": clave}
     respuesta = requests.post(f'{rest_api.API_URL}/login', json=body)
     # Solo se verifica el codigo de la respuesta en este caso
@@ -30,11 +31,13 @@ def obtener_usuarios():
     return respuesta.json()
 
 
-def crear_foro(titulo, contenido):
+def crear_foro(autor, titulo, contenido):
     body = {
+        "author": autor,
         "title": titulo,
         "content": contenido
     }
+    autor = session['author']
     respuesta = requests.post(f'{rest_api.API_URL}/forum', json = body)
     return respuesta.status_code == 200
 

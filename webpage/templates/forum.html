@@ -4,62 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link href="../static/styles/forumstyle.css" rel="stylesheet">
-    <title>Foro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link href="../static/styles/forumStyle.css" rel="stylesheet">
+    <title>Ingresando a la Facutlad</title>
 </head>
 
 <body>
-    <nav id="encabezado">
-        <div class="title">
-            <h3>Ingresando a la facultad</h3>
-        </div>
-        <ul class="nav_links">
-            <li>
-                <a href="{{ url_for('index') }}">Menu</a>
-            </li>
-            <li>
-                <a href="#">Materias</a>
-            </li>
-            <li>
-                <a href="#">Foro</a>
-            </li>
-            <li>
-                <a href="#">Noticias</a>
-            </li>
-            <li>
-                <a href="{{ url_for('login') }}">Iniciar Sesion</a>
-            </li>
-            <li>
-                <a href="{{ url_for('register') }}">Registrarse</a>
-            </li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
-    <div class="forum_image">
-        <h3 id="forum_title">Foro</h3>
-        <h4 id="forum_sub_title">Comparte tus dudas</h4>
-    </div>
-    <div>
-        <div class="container_info">
-            <p id="info_forum">Aqui encontraras un foro mediante el cual podras contactarte con <span>tutores</span>
-                (alumnos mas avanzados en la carrera) u otros compañeros para poder evacuar tus dudas.</p>
-            <p id="info_forum">Tambien podras contestarles a otros compañeros.</p>
-        </div>
-        <form id="form_forum" action="" method="post" autocomplete="off">
-            <div class="first_container_forum">
-                <input class="create_post_button" type="submit" value="Crear Nueva Publicacion">
+    <section class="encabezado">
+        <nav>
+            <div class="title">
+                <a href="{{ url_for('home') }}"><img src="../static/img/title5Fix.png"></a>
             </div>
-        </form>
-    </div>
-    <script src="../static/functionality/app.js"></script>
+            <div class="nav_links" id="navLinks">
+                <i class="fa fa-times" onclick="closeMenu()"></i>
+                <ul>
+                    <li>
+                        <a class="anchorsNav" href="{{ url_for('home') }}">Menu</a>
+                    </li>
+                    <li>
+                        <a class="anchorsNav" href="#">Foro</a>
+                    </li>
+                    {% if 'username' in session %}
+                    <li>
+                        <a class="anchorsNav" href="/profile">{{ session['username'] }}</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Cerrar Sesion</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <h1 class="post_h1">Foro</h1>
+        <p class="post_p">Comparte tus dudas y ayuda a quien lo necesite!</p>
+    </section>
+    <section class="postHome" id="forum">
+        <div id="left">
+            <form class="container" action="home" method="post" name="post">
+                <input type="text" class="tituloForm" placeholder="Titulo" name="title" value="{{ request.form.title }}">
+                <input type="text" class="contenidoForm" placeholder="Contenido..." name="content" value="{{ request.form.content }}">
+                <input class="BotonForm" type="submit">
+            </form>
+                </div>
+        </div>
+    </section>
+    <script src="../static/js/app.js"></script>
 </body>
 
 </html>

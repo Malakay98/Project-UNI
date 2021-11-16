@@ -11,7 +11,15 @@ def getIndex():
     return render_template('index.html')
 
 
+
+
+
 # ||| USUARIOS |||
+
+
+
+
+
 
 # Obtener los datos de todos los usuarios.
 @app.route('/usuarios', methods=['GET'])  # Funciona
@@ -72,7 +80,15 @@ def eliminar_usuario(id_usuario):
     return jsonify(f'Usuario eliminado. ID del usuario: ', id_usuario), 200
 
 
+
+
+
 # ||| FORO |||
+
+
+
+
+
 
 
 @app.route('/foro', methods=['GET'])  # Funciona
@@ -91,7 +107,8 @@ def obtener_foro(id_forum):
         return 'Error en el servidor', 500  # Indica que algo ha salido mal en el servidor
 
 
-@app.route('/foro', methods=['POST'])  # Funciona
+
+@app.route('/foro', methods=['GET', 'POST'])  # Funciona
 def crear_foro():
     datos_foro = request.get_json()
     if 'title' not in datos_foro:
@@ -100,6 +117,7 @@ def crear_foro():
         return 'La descripcion no puede estar vacia', 400
     autenticacion.createForum(datos_foro['title'], datos_foro['content'])
     return jsonify('Publicacion creada exitosamente', datos_foro), 200
+
 
 
 @app.route('/foro/<id_forum>', methods=['DELETE'])  # Funciona
@@ -119,7 +137,17 @@ def editar_foro(id_forum):
     return "Publicacion modificada", 200
 
 
+
+
+
+
 # ||| NOTICIAS |||
+
+
+
+
+
+
 
 @app.route('/noticias', methods=['GET'])
 def obtener_las_noticias():
@@ -167,18 +195,23 @@ def editar_noticia(id_new):
     return "Noticia modificada", 200
 
 
+
+
 # ||| LOGIN |||
+
+
+
 
 # Iniciamos sesion con un usuario existente
 
 @app.route('/login', methods=['POST'])  # Funciona
 def login():
     datos_usuario = request.get_json()
-    if 'email' not in datos_usuario:
-        return 'El email es requerido', 400
+    if 'username' not in datos_usuario:
+        return 'El usuario es requerido', 400
     if 'password' not in datos_usuario:
         return 'La clave es requerida', 400
-    id_sesion = autenticacion.login(datos_usuario['email'], datos_usuario['password'])
+    id_sesion = autenticacion.login(datos_usuario['username'], datos_usuario['password'])
     if id_sesion:
         return f"Usuario logueado exitosamente: idSession {id_sesion}", 200
     else:

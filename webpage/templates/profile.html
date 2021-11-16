@@ -19,7 +19,7 @@
     <section class="encabezado">
         <nav>
             <div class="title">
-                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+                <a href="{{ url_for('home') }}"><img src="../static/img/title5Fix.png"></a>
             </div>
             <div class="nav_links" id="navLinks">
                 <i class="fa fa-times" onclick="closeMenu()"></i>
@@ -30,12 +30,14 @@
                     <li>
                         <a id="a_prev" href="{{ url_for('forum') }}">Foro</a>
                     </li>
+                    {% if 'email' in session %}
                     <li>
-                        <a id="a_prev" href="{{ url_for('news') }}">Noticias</a>
+                        <a class="anchorsNav" href="/profile">{{ session['email'] }}</a>
                     </li>
                     <li>
-                        <a id="a_prev" href="#">Cerrar Sesion</a>
+                        <a href="/logout">Cerrar Sesion</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>

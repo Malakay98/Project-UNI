@@ -87,21 +87,21 @@ def getUsersByFiveParamRegister(username, email, firstName, lastName, password):
         return None
 
 
-def getUsersByTwoParamLogin(email, password):
+def getUsersByTwoParamLogin(username, password):
     ingresar_datos = f'''
-       SELECT idUsers, email, password
+       SELECT idUsers, username, password
        FROM Usuarios
        WHERE
-       email = '{email}' AND password = '{password}'
+       username = '{username}' AND password = '{password}'
     '''
     bd = BaseDeDatos()
     result = bd.ejecutar_sql(ingresar_datos)
     if result:
         return {"idUsers": result[0][0],
-                 "email": result[0][1],
-                 "password": result[0][2]}
+                "username": result[0][1],
+                "password": result[0][2]}
     else:
-        None
+        return None
 
 def createSession(idUser, dt_str):
     crear_sesion_sql = f'''

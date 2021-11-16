@@ -34,9 +34,6 @@ def deleteUser(id_usuario):
 # || LOGIN Y VALIDACION DE USUARIO ||
 
 
-def userExist(email, password):
-    usuarios = modelo_usuario.getUsersByTwoParamLogin(email, password)
-    return usuarios and len(usuarios) == 1
 
 
 def userExistforRegister(username, email, firstName, lastName, password):
@@ -50,10 +47,10 @@ def createSession(id_usuario):
     return modelo_usuario.createSession(id_usuario, dt_string)
 
 
-def login(email, password):
-    if userExist(email, password):
-        usuario = modelo_usuario.getUsersByTwoParamLogin(email, password)[0]
-        return createSession(usuario['idUsers'])
+def login(username, password):
+    usuarios = modelo_usuario.getUsersByTwoParamLogin(username, password)
+    if usuarios:
+        return createSession(usuarios['idUsers'])
     else:
         raise Exception("El usuario no existe o la clave es invalida")
 
@@ -80,8 +77,12 @@ def getForum(id_forum):
     return forum
 
 
-def createForum(title, content):
-    return modelo_foro.createForum(title, content)
+def createForum(title, content, autor):
+    userPost = modelo_foro.createForum(title, content, autor)
+    if userPost:
+        validateSession(userPost['idUser'])
+    else:
+        raise Exception("No se pudo crear la publicacion")
 
 
 def deleteForum(id_forum):

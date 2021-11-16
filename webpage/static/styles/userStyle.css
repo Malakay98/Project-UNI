@@ -112,6 +112,11 @@ nav .fa {
 }
 
 
+::placeholder {
+  color: #ffffff;
+}
+
+
 .inputsField {
   font-family: "Poppins", sans-serif;
   color: #ffffff;

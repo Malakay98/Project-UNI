@@ -29,8 +29,8 @@
 
 body {
   background-image: linear-gradient(
-    rgba(27, 46, 153, 0.774),
-    rgba(122, 155, 247, 0.767)
+    rgba(117, 121, 141, 0.774),
+    rgba(117, 121, 141, 0.774)
   );
 }
 
@@ -228,13 +228,13 @@ nav .fa {
 .news h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  color: #07657c;
+  color: #1b5985;
   font-size: 60px;
   padding: 0px;
 }
 
 .p_newsTitle {
-  color: #464646;
+  color: #4b4b4b;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
 }
@@ -250,7 +250,7 @@ nav .fa {
 
 .row {
   margin: 5%;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
 }
 
@@ -262,6 +262,12 @@ nav .fa {
   padding: 20px 12px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.news-col:hover {
+  transform: translate(0px, 5px);
+  -webkit-transform: 10px 10px 10px #ffffff;
+  border-radius: 2px;
 }
 
 .news h3 {
@@ -315,6 +321,7 @@ nav .fa {
   color: #cacaca;
 }
 
+
 .material_col {
   margin: 10px;
   flex-basis: 20%;
@@ -324,9 +331,11 @@ nav .fa {
   overflow: hidden;
 }
 
+
 .material_col:hover {
   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.5);
 }
+
 
 .material_col img {
   max-height:100%; 
@@ -348,57 +357,4 @@ nav .fa {
   position: absolute;
   background: rgba(0, 0, 0, 0.8);
   box-shadow: 10px 20px 20px 20px rgba(0, 0, 0, 0.9);
-}
-
-
-/*  | FORO |  */
-
-.postHome {
-  font-family: "Roboto", sans-serif;
-  width: 80%;
-  margin: auto;
-  padding: 40px;
-}
-
-.post_h1 {
-  font-family: "Poppins", sans-serif;
-  color: #01708b;
-  font-size: 60px;
-  padding: 20px;
-  text-align: center;
-}
-
-.post_p {
-  color: rgb(223, 219, 219);
-  text-align: center;
-}
-
-.makePost {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  background-color: #d4f4f5;
-  color: #0567c9;
-  padding: 15px;
-  margin-left: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-}
-
-.threads {
-  margin: 100px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #547bfa;
-  padding: 10px;
-}
-
-.rowPost {
-  background-color: rgba(250, 250, 250, 0.4);
-  border-radius: 5px;
-  margin: 10px;
-  list-style-type: none;
-  padding: 15px;
 }

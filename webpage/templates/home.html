@@ -20,30 +20,29 @@
     <section class="encabezado">
         <nav>
             <div class="title">
-                <a href="{{ url_for('index') }}"><img src="../static/img/title5Fix.png"></a>
+                <a href="{{ url_for('home') }}"><img src="../static/img/title5Fix.png"></a>
             </div>
             <div class="nav_links" id="navLinks">
                 <i class="fa fa-times" onclick="closeMenu()"></i>
                 <ul>
                     <li>
-                        <a class="anchorsNav" href="#news">Noticias</a>
+                        <a class="anchorsNav" href="{{ url_for('forum') }}">Foro</a>
+                    </li>
+                    {% if 'username' in session %}
+                    <li>
+                        <a class="anchorsNav" href="/profile">{{ session['username'] }}</a>
                     </li>
                     <li>
-                        <a class="anchorsNav" href="#material">Materias</a>
+                        <a href="/logout">Cerrar Sesion</a>
                     </li>
-                    <li>
-                        <a class="anchorsNav" href="#forum">Foro</a>
-                    </li>
-                    <li>
-                        <a href="#">Cerrar Sesion</a>
-                    </li>
+                    {% endif %}
                 </ul>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
         <div class="indexWelcome">
-            <h3>Conecta, comparte y aprende.</h3>
+            <h2>Conecta, comparte y aprende.</h2>
             <h1>Estudia medicina desde<br> un nuevo angulo.</h1>
             <p>Cada carrera exitosa comienza con una buena educacion.<br>Con nosotros, descubre la facilidad de poder
                 comunicarte con tus mentores, acceder a la bibliografia necesaria<br> y estar al tanto de las
@@ -61,24 +60,24 @@
         <h1>Noticias</h1>
         <p class="p_newsTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         <div class="row">
-            <div class="news-col">
+            <a class="news-col" type="button">
                 <h3>Facultad</h3>
                 <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
                     voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
                     consequuntur earum natus corporis, eveniet deserunt.</p>
-            </div>
-            <div class="news-col">
+            </a>
+            <a class="news-col" type="button">
                 <h3>Medicina</h3>
                 <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
                     voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
                     consequuntur earum natus corporis, eveniet deserunt.</p>
-            </div>
-            <div class="news-col">
+            </a>
+            <a class="news-col" type="button">
                 <h3>EVA</h3>
                 <p class="p_news">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla maxime corrupti
                     voluptate numquam expedita consequatur nesciunt repellendus in magnam vel et quae similique minima
                     consequuntur earum natus corporis, eveniet deserunt.</p>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -126,86 +125,6 @@
                     <a href="http://www.fmed.edu.uy/">SPYH</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!--   | FORO |   -->
-
-
-    <section class="postHome" id="forum">
-        <h1 class="post_h1">Foro</h1>
-        <p class="post_p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, perspiciatis consectetur?
-            Itaque, iusto quisquam. Praesentium totam unde sunt architecto sapiente sit labore deserunt laboriosam eius.
-            Hic accusamus blanditiis nam nulla!</p>
-        <div class="threads">
-            <button class="makePost">Crea una Publicación</button>
-            <ol>
-                <li class="rowPost">
-                    <h4 class="titlePost">
-                        Thread 1
-                    </h4>
-                    <div class="bottomPost">
-                        <p class="timestamp">
-                            04/11/21
-                        </p>
-                        <p class="comment_count">
-                            4 Comments
-                        </p>
-                    </div>
-                </li>
-                <li class="rowPost">
-                    <h4 class="titlePost">
-                        Thread 1
-                    </h4>
-                    <div class="bottomPost">
-                        <p class="timestamp">
-                            04/11/21
-                        </p>
-                        <p class="comment_count">
-                            4 Comments
-                        </p>
-                    </div>
-                </li>
-                <li class="rowPost">
-                    <h4 class="titlePost">
-                        Thread 1
-                    </h4>
-                    <div class="bottomPost">
-                        <p class="timestamp">
-                            04/11/21
-                        </p>
-                        <p class="comment_count">
-                            4 Comments
-                        </p>
-                    </div>
-                </li>
-                <li class="rowPost">
-                    <h4 class="titlePost">
-                        Thread 1
-                    </h4>
-                    <div class="bottomPost">
-                        <p class="timestamp">
-                            04/11/21
-                        </p>
-                        <p class="comment_count">
-                            4 Comments
-                        </p>
-                    </div>
-                </li>
-                <li class="rowPost">
-                    <h4 class="titlePost">
-                        Thread 1
-                    </h4>
-                    <div class="bottomPost">
-                        <p class="timestamp">
-                            04/11/21
-                        </p>
-                        <p class="comment_count">
-                            4 Comments
-                        </p>
-                    </div>
-                </li>
-            </ol>
         </div>
     </section>
     <script src="../static/js/app.js"></script>

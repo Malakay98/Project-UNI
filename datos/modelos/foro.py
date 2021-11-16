@@ -30,15 +30,16 @@ def getOneForum(id_forum):
         return None
 
 
-def createForum(title, content):
+def createForum(title, content, autor):
     crear_foro_sql = f'''
-       INSERT INTO Foro (title, content)
-       VALUES('{title}', '{content}')
+       INSERT INTO Foro (title, content, author)
+       VALUES('{title}', '{content}', '{autor}')
     '''
     bd = BaseDeDatos()
     return [{'idForum': registro[0],
              'title': registro[1],
-             'content': registro[2]}
+             'content': registro[2],
+             'author': registro[3]}
              for registro in bd.ejecutar_sql(crear_foro_sql)]
 
 
