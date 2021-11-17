@@ -1,0 +1,262 @@
+/* SCROLL BAR */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #96b7f5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 3px #000000;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5fb7f7;
+  border-radius: 0px;
+}
+
+/* END OF THE SCROLL BAR */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+body {
+  background-image: linear-gradient(
+    rgba(0, 213, 255, 0.774),
+    rgba(0, 213, 255, 0.774)
+  );
+}
+
+.encabezado {
+  background-image: url("../img/doctorForum.jpg");
+  min-height: 60vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+nav {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  padding: 1% 3%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+nav img {
+  width: 250px;
+}
+
+
+.nav_links {
+  flex: 1;
+  text-align: right;
+}
+
+
+.nav_links ul li {
+  position: relative;
+  letter-spacing: 2px;
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+}
+
+
+.nav_links ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+.nav_links ul li::after {
+  content: "";
+  width: 0%;
+  height: 2.5px;
+  background: #2ca8ff;
+  display: block;
+  margin: auto;
+  transition: 0.5s ease-in-out;
+}
+
+
+.nav_links ul li:hover::after {
+  width: 100%;
+}
+
+.anchorsNav {
+  transition: 0.5s;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+nav .fa {
+  display: none;
+}
+
+.fa-arrow-down {
+  color: #cccccc;
+  font-size: 130px;
+}
+
+
+.post_h1 {
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  font-size: 70px;
+  padding: 20px;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.post_p {
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 20px;
+  margin: 50px auto;
+}
+
+@media (max-width: 700px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  nav img {
+    margin-top: 4px;
+  }
+  .indexWelcome {
+    transform: translate(-50%, -10%);
+    text-align: center;
+  }
+  .indexWelcome h3 {
+    font-size: 15px;
+    text-align: center;
+  }
+  .indexWelcome h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .indexWelcome p {
+    font-size: 10px;
+    text-align: center;
+  }
+  .nav_links ul li {
+    display: block;
+  }
+  .nav_links {
+    position: absolute;
+    background: #5878ca;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -200px;
+    text-align: center;
+    z-index: 2;
+    transition: 1s;
+  }
+  nav .fa {
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  nav .fa:hover {
+    color: #2ca8ff;
+    transition: 0.5s ease-in-out;
+  }
+  .nav_links ul {
+    padding: 10px;
+  }
+}
+
+.postHome {
+  font-family: "Roboto", sans-serif;
+  width: 80%;
+  margin: auto;
+  padding: 40px;
+}
+
+
+#title {
+  position: relative;
+}
+
+
+#content {
+  position: relative;
+}
+
+.makePost {
+  width: 400px;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: #d4f4f5;
+  color: #0567c9;
+  padding: 15px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.fa-pencil {
+  text-align: right;
+  margin-left: 170px;
+}
+
+.textPost {
+  width: 100%;
+}
+
+.makePost:hover {
+  color: #ffffff;
+  background-color: #0567c9;
+}
+
+
+.threads {
+  margin: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #547bfa;
+  padding: 10px;
+}
+
+.rowPost {
+  background-color: rgba(250, 250, 250, 0.4);
+  border-radius: 5px;
+  margin: 10px;
+  list-style-type: none;
+  padding: 15px;
+}
+
+.bottomPost {
+  padding: 10px;
+}
+
+
+.container {
+  width: 85%;
+  height: auto;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
