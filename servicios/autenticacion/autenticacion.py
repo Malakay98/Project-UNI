@@ -2,6 +2,7 @@ from datetime import datetime
 from datos.modelos import usuario as modelo_usuario
 from datos.modelos import noticias as modelo_noticias
 from datos.modelos import foro as modelo_foro
+from flask import session
 
 # ||| USUARIOS |||
 
@@ -50,7 +51,7 @@ def createSession(id_usuario):
 def login(username, password):
     usuarios = modelo_usuario.getUsersByTwoParamLogin(username, password)
     if usuarios:
-        return createSession(usuarios['idUsers'])
+        session['idUser'] = usuarios['idUsers']
     else:
         raise Exception("El usuario no existe o la clave es invalida")
 
@@ -78,10 +79,10 @@ def getForum(id_forum):
 
 
 def createForum(title, content, autor):
-    userPost = modelo_foro.createForum(title, content, autor)
-    if userPost:
-        validateSession(userPost['idUser'])
-    else:
+    print(title, content, autor)
+    try:
+        modelo_foro.createForum(title, content, autor)
+    except:
         raise Exception("No se pudo crear la publicacion")
 
 

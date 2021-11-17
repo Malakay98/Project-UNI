@@ -32,16 +32,12 @@ def getOneForum(id_forum):
 
 def createForum(title, content, autor):
     crear_foro_sql = f'''
-       INSERT INTO Foro (title, content, author)
+       INSERT INTO Foro (title, content, idUser)
        VALUES('{title}', '{content}', '{autor}')
     '''
+    print(crear_foro_sql)
     bd = BaseDeDatos()
-    return [{'idForum': registro[0],
-             'title': registro[1],
-             'content': registro[2],
-             'author': registro[3]}
-             for registro in bd.ejecutar_sql(crear_foro_sql)]
-
+    bd.ejecutar_sql(crear_foro_sql)
 
 def deleteForum(id_forum):
     eliminar_foro_sql = f'''
