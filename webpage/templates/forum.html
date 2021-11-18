@@ -49,10 +49,14 @@
     </section>
     <section class="postHome" id="forum">
         <div id="left">
-            <form class="container" action="home" method="post" name="post">
+            <form class="container" action="forum" method="post" name="post">
+                <h3 class="h3_forum">Crea una publicacion!</h3>
                 <input type="text" class="tituloForm" placeholder="Titulo" name="title" value="{{ request.form.title }}">
                 <input type="text" class="contenidoForm" placeholder="Contenido..." name="content" value="{{ request.form.content }}">
-                <input class="BotonForm" type="submit">
+                <input class="BotonForm" type="submit" value="Crear">
+                <div class="messages">
+                    <li></li>
+                </div>
             </form>
                 </div>
         </div>

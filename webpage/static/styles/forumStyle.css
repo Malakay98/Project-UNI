@@ -27,15 +27,12 @@
 
 
 body {
-  background-image: linear-gradient(
-    rgba(0, 213, 255, 0.774),
-    rgba(0, 213, 255, 0.774)
-  );
+  background-image: linear-gradient(90deg, #2eceff 60%, #138db3 90%);
 }
 
 .encabezado {
   background-image: url("../img/doctorForum.jpg");
-  min-height: 60vh;
+  min-height: 50vh;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -112,18 +109,21 @@ nav .fa {
   font-family: "Poppins", sans-serif;
   color: #ffffff;
   font-size: 70px;
-  padding: 20px;
-  text-align: center;
+  padding: 30px;
+  text-align: left;
   margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .post_p {
   font-family: "Roboto", sans-serif;
   color: #ffffff;
-  text-align: center;
+  text-align: left;
   letter-spacing: 3px;
-  font-size: 20px;
-  margin: 50px auto;
+  font-size: 30px;
+  padding: 30px;
+  margin: 10px auto;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 700px) {
@@ -254,9 +254,48 @@ nav .fa {
 
 
 .container {
+  font-family: 'Roboto', sans-serif;
   width: 85%;
   height: auto;
+  padding: 25px;
   margin: auto;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
+  border: 1px solid #2ca8ff;
+}
+
+
+.h3_forum {
+  color: #ffffff;
+  padding: 15px;
+  font-size: 35px;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+  display: block;
+  border: 1px solid red;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 5px;
+  background: transparent;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #058610;
+  outline: none;
+}
+
+::placeholder {
+  color: #ffffff;
+}
+
+
+.BotonForm {
+  padding: 10px;
+  margin-top: 30px;
+  width: auto;
+  border: 1px solid #058610;
 }

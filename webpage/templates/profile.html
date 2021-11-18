@@ -24,15 +24,15 @@
             <div class="nav_links" id="navLinks">
                 <i class="fa fa-times" onclick="closeMenu()"></i>
                 <ul>
+                    {% if 'username' in session %}
                     <li>
                         <a id="a_prev" href="{{ url_for('home') }}">Menu</a>
                     </li>
                     <li>
                         <a id="a_prev" href="{{ url_for('forum') }}">Foro</a>
                     </li>
-                    {% if 'email' in session %}
                     <li>
-                        <a class="anchorsNav" href="/profile">{{ session['email'] }}</a>
+                        <a class="anchorsNav" href="/profile">{{ session['username'] }}</a>
                     </li>
                     <li>
                         <a href="/logout">Cerrar Sesion</a>

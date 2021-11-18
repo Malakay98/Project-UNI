@@ -121,7 +121,7 @@ def crear_foro():
     if 'content' not in datos_foro:
         return 'La descripcion no puede estar vacia', 400
     autenticacion.createForum(datos_foro['title'], datos_foro['content'], idUser)
-    return jsonify('Publicacion creada exitosamente', datos_foro), 200
+    return jsonify('Publicacion creada exitosamente', datos_foro, idUser), 200
 
 
 

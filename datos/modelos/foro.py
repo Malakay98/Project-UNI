@@ -30,6 +30,7 @@ def getOneForum(id_forum):
         return None
 
 
+
 def createForum(title, content, autor):
     crear_foro_sql = f'''
        INSERT INTO Foro (title, content, idUser)
@@ -38,6 +39,8 @@ def createForum(title, content, autor):
     print(crear_foro_sql)
     bd = BaseDeDatos()
     bd.ejecutar_sql(crear_foro_sql)
+
+
 
 def deleteForum(id_forum):
     eliminar_foro_sql = f'''
