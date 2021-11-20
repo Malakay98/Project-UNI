@@ -209,6 +209,8 @@ def editar_noticia(id_new):
 
 # Iniciamos sesion con un usuario existente
 
+
+#Aca tambien tuvimos muchos cambios de session, luego de esto el Login no funciono
 @app.route('/login', methods=['POST'])  # Funciona
 def login():
     datos_usuario = request.get_json()
@@ -218,7 +220,7 @@ def login():
         return 'La clave es requerida', 400
     autenticacion.login(datos_usuario['username'], datos_usuario['password'])
     if session.get('idUser', None) is not None:
-        return f"Usuario logueado exitosamente: idSession {session['idUser']}", 200
+        return str(session['idUser']), 200
     else:
         return f"Usuario, correo o clave equivocada, intentelo de nuevo", 400
 

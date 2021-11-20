@@ -14,20 +14,19 @@ app.secret_key = 'BAD_SECRET_KEY'
 def index():
     return render_template('index.html')
 
-
+# Aqui estuvimos teniendo muchos cambios con el session. Luego de estos cambios, dejo de funcionar mi Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
-    if request.method == 'GET':
-        pass
-
     if request.method == 'POST':
-        if not autenticacion.validar_credenciales(
-                request.form['username'],
-                request.form['password']):
+        credenciales = autenticacion.validar_credenciales(
+                            request.form['username'],
+                            request.form['password'])
+        if credenciales == None:
             error = 'Credenciales Invalidas'
         else:
             session['username'] = request.form['username']
+            session['idUsers'] = credenciales
             return redirect(url_for('home'))
     return render_template('login.html', error = error)
 
@@ -67,7 +66,7 @@ def home():
     return render_template('home.html')
 
 
-
+# Problema principal, no puedo crear una publicacion que se muestre en la misma pagina del foro
 @app.route('/forum', methods=['GET', 'POST'])
 def forum():
     error = None
@@ -76,7 +75,7 @@ def forum():
 
     if request.method == 'POST':
         if not autenticacion.crear_foro(
-            request.form['author'],
+            session['idUsers'],
             request.form['title'],
             request.form['content']):
             error = "No se pudo crear la publicacion"
@@ -85,6 +84,10 @@ def forum():
     return render_template('forum.html', error = error)
 
 
+@app.route('/forum/<id_forum>', methods = ['GET', 'POST'])
+def oneForum():
+    if request.method == 'GET':
+        return render_template('oneForum.html')
 
 
 if __name__ == '__main__':

@@ -2,17 +2,25 @@ from webpage.servicios import rest_api
 import requests
 from flask import session
 
+from webpage.servidor_web import oneForum
+
 def ingresar_inicio():
     respuesta = requests.post(f'{rest_api.API_URL}/index')
     return respuesta.json()
 
 
+
+#Aca tambien tuvimos muchos cambios
 def validar_credenciales(username, clave):
     body = {"username": username,
             "password": clave}
     respuesta = requests.post(f'{rest_api.API_URL}/login', json=body)
+    if respuesta.status_code == 200:
+        return respuesta.text
+    else:
+        return None
     # Solo se verifica el codigo de la respuesta en este caso
-    return respuesta.status_code == 200
+
 
 
 def crear_usuario(usuario, email, nombre, apellido, clave):
@@ -37,7 +45,14 @@ def crear_foro(autor, titulo, contenido):
         "title": titulo,
         "content": contenido
     }
-    autor = session['author']
     respuesta = requests.post(f'{rest_api.API_URL}/forum', json = body)
+    return respuesta.status_code == 200
+
+
+def obtener_foro(id_forum):
+    body = {
+        crear_foro(id_forum)
+    }
+    respuesta = requests.post(f'{rest_api.rest_api.API_URL}/forum', json = body)
     return respuesta.status_code == 200
 

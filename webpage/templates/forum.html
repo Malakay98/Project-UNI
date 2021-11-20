@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
     <link href="../static/styles/forumStyle.css" rel="stylesheet">
     <title>Ingresando a la Facutlad</title>
@@ -53,11 +54,13 @@
                 <h3 class="h3_forum">Crea una publicacion!</h3>
                 <input type="text" class="tituloForm" placeholder="Titulo" name="title" value="{{ request.form.title }}">
                 <input type="text" class="contenidoForm" placeholder="Contenido..." name="content" value="{{ request.form.content }}">
-                <input class="BotonForm" type="submit" value="Crear">
-                <div class="messages">
-                    <li></li>
-                </div>
+                <input class="btn btn-success" type="submit" value="Crear">
             </form>
+                </div>
+                <div class="container">
+                    <talbe class="forum tableModule">
+                        asasasas
+                    </talbe>
                 </div>
         </div>
     </section>

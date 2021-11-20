@@ -292,10 +292,6 @@ input {
   color: #ffffff;
 }
 
-
-.BotonForm {
-  padding: 10px;
-  margin-top: 30px;
-  width: auto;
-  border: 1px solid #058610;
+.btn:hover {
+  border: 2px solid #ffffff;
 }
