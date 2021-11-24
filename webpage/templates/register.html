@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="../static/styles/userStyle.css" rel="stylesheet">
     <title>Registrarse</title>
 </head>
@@ -35,9 +36,9 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-    <div class="formBox">
+    <div class="formBoxR">
         <div class="titleBox">
-            <div id="title"><h1>Registrarse</h1></div>
+            <div id="titleR"><h1>Registrarse</h1></div>
         </div>
         <form id="register" action="" method="post" autocomplete="off" class="inputsForm2">
             <input class="inputsField" type="text" id="username" name="username" placeholder="Usuario" value="{{ request.form.username }}" required>

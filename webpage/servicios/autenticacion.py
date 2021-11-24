@@ -2,8 +2,6 @@ from webpage.servicios import rest_api
 import requests
 from flask import session
 
-from webpage.servidor_web import oneForum
-
 def ingresar_inicio():
     respuesta = requests.post(f'{rest_api.API_URL}/index')
     return respuesta.json()
@@ -49,10 +47,15 @@ def crear_foro(autor, titulo, contenido):
     return respuesta.status_code == 200
 
 
+def obtener_foros():
+    respuesta = requests.get(f'{rest_api.API_URL}/forum')
+    return respuesta.json()
+
+
 def obtener_foro(id_forum):
     body = {
         crear_foro(id_forum)
     }
-    respuesta = requests.post(f'{rest_api.rest_api.API_URL}/forum', json = body)
+    respuesta = requests.post(f'{rest_api.API_URL}/forum', json = body)
     return respuesta.status_code == 200
 

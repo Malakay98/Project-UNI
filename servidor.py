@@ -88,15 +88,12 @@ def eliminar_usuario(id_usuario):
 
 
 
-
-
-
-@app.route('/foro', methods=['GET'])  # Funciona
+@app.route('/forum', methods=['GET'])  # Funciona
 def obtener_foros():
     return jsonify(autenticacion.getForums())
 
 
-@app.route('/foro/<id_forum>', methods=['GET'])  # Funciona
+@app.route('/forum/<id_forum>', methods=['GET'])  # Funciona
 def obtener_foro(id_forum):
     try:
         foro = autenticacion.getForum(id_forum)
@@ -108,7 +105,7 @@ def obtener_foro(id_forum):
 
 
 
-@app.route('/foro', methods=['GET', 'POST'])  # Funciona
+@app.route('/forum', methods=['POST'])  # Funciona
 def crear_foro():
     datos_foro = request.get_json()
     try:
@@ -125,13 +122,13 @@ def crear_foro():
 
 
 
-@app.route('/foro/<id_forum>', methods=['DELETE'])  # Funciona
+@app.route('/forum/<id_forum>', methods=['DELETE'])  # Funciona
 def eliminar_foro(id_forum):
     autenticacion.deleteForum(id_forum)
     return jsonify('Publicacion eliminada. Publicacion: ', id_forum), 200
 
 
-@app.route('/foro/<id_forum>', methods=['PUT'])  # Funciona
+@app.route('/forum/<id_forum>', methods=['PUT'])  # Funciona
 def editar_foro(id_forum):
     datos_foro = request.get_json()
     if 'title' not in datos_foro or datos_foro['title'] == '':

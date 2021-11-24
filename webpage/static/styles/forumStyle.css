@@ -31,11 +31,13 @@ body {
 }
 
 .encabezado {
-  background-image: url("../img/doctorForum.jpg");
+  background-image: linear-gradient(rgba(4, 10, 43, 0.2), rgba(4, 9, 30, 0.7)), url("../img/communi.jpeg");
+  background-position: center;
   min-height: 50vh;
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 5px 5px 6px rgba(0,0,0, .2);
 }
 
 nav {
@@ -78,7 +80,7 @@ nav img {
   content: "";
   width: 0%;
   height: 2.5px;
-  background: #2ca8ff;
+  background: #2eceff;
   display: block;
   margin: auto;
   transition: 0.5s ease-in-out;
@@ -100,14 +102,14 @@ nav .fa {
 }
 
 .fa-arrow-down {
-  color: #cccccc;
+  color: #1f418b;
   font-size: 130px;
 }
 
 
 .post_h1 {
   font-family: "Poppins", sans-serif;
-  color: #ffffff;
+  color: #73d6dd;
   font-size: 70px;
   padding: 30px;
   text-align: left;
@@ -117,7 +119,7 @@ nav .fa {
 
 .post_p {
   font-family: "Roboto", sans-serif;
-  color: #ffffff;
+  color: #73d6dd;
   text-align: left;
   letter-spacing: 3px;
   font-size: 30px;
@@ -125,6 +127,7 @@ nav .fa {
   margin: 10px auto;
   background-color: rgba(255, 255, 255, 0.1);
 }
+
 
 @media (max-width: 700px) {
   ::-webkit-scrollbar {
@@ -168,7 +171,7 @@ nav .fa {
   }
   nav .fa {
     display: block;
-    color: #ffffff;
+    color: #1f418b;
     font-size: 20px;
     margin: 10px;
     cursor: pointer;
@@ -266,9 +269,11 @@ nav .fa {
 
 
 .h3_forum {
-  color: #ffffff;
-  padding: 15px;
+  color: #2086a5;
+  padding: 20px;
+  margin-bottom: 20px;
   font-size: 35px;
+  width: 350px;
 }
 
 input {
@@ -284,14 +289,31 @@ input {
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #058610;
+  border-bottom: 1px solid #4a89ff;
   outline: none;
 }
 
 ::placeholder {
-  color: #ffffff;
+  color: #73d6dd;
 }
 
-.btn:hover {
-  border: 2px solid #ffffff;
+.botonForm {
+  margin-top: 50px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #4a89ff;
+  transition: 0.5s ease-in-out;
+}
+
+.botonForm:hover {
+  color: #4a89ff;
+  background-color: #ffffff;
+}
+
+.postUser {
+  color: #104c5e;
+  font-size: 20px;
+  margin: 10px 10px 10px;
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid #3286e6;
 }

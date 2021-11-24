@@ -11,60 +11,78 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="../static/styles/profileStyle.css" rel="stylesheet">
     <title>Ingresando a la Facutlad</title>
 </head>
 
 <body>
-    <section class="encabezado">
-        <nav>
-            <div class="title">
-                <a href="{{ url_for('home') }}"><img src="../static/img/title5Fix.png"></a>
+    <nav>
+        <div class="title">
+            <a href="{{ url_for('home') }}"><img src="../static/img/title5Fix.png"></a>
+        </div>
+        <div class="nav_links" id="navLinks">
+            <i class="fa fa-times" onclick="closeMenu()"></i>
+            <ul>
+                <li>
+                    <a class="anchorsNav" href="{{ url_for('home') }}">Menu</a>
+                </li>
+                <li>
+                    <a class="anchorsNav" href="{{ url_for('forum') }}">Foro</a>
+                </li>
+                {% if 'username' in session %}
+                <li>
+                    <a class="anchorsNav" href="/#">{{ session['username'] }}</a>
+                </li>
+                <li>
+                    <a href="/logout">Cerrar Sesion</a>
+                </li>
+                {% endif %}
+            </ul>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <div class="container">
+        <div class="profileHeader">
+            <div class="imgProfile">
+                <img src="/webpage/static/img/ariana.jpg" width="200" alt="photoProfile">
             </div>
-            <div class="nav_links" id="navLinks">
-                <i class="fa fa-times" onclick="closeMenu()"></i>
-                <ul>
-                    {% if 'username' in session %}
-                    <li>
-                        <a id="a_prev" href="{{ url_for('home') }}">Menu</a>
-                    </li>
-                    <li>
-                        <a id="a_prev" href="{{ url_for('forum') }}">Foro</a>
-                    </li>
-                    <li>
-                        <a class="anchorsNav" href="/profile">{{ session['username'] }}</a>
-                    </li>
-                    <li>
-                        <a href="/logout">Cerrar Sesion</a>
-                    </li>
-                    {% endif %}
-                </ul>
+            <div class="profileInfo">
+                <h3 class="userName">Ariana Grande</h3>
+                <p class="city">Minas, Lavalleja</p>
             </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-        <div class="profileBox">
-            <div class="photo_col">
-                <img class="photo_profile" src="../static/img/ariana.jpg" width="100px">
-                <h3>Ariana Grande</h3>
-                <ul>
-                    <li>
-                        <h4>28 años</h4>
-                    </li>
-                    <li>
-                        <h4>Estudiante primer año</h4>
-                    </li>
-                </ul>
+        </div>
+        <div class="mainInfo">
+            <div class="leftSide">
+                <div class="profileSide">
+                    <label>Numero: <p class="userPhone"> +598 *** *** ** </p></label>
+                    <label>Email: <p class="userEmail"> ariGrande@gmail.com</p></label>
+                    <div class="userBio">
+                        <p class="bio">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse quasi deleniti
+                            sapiente, voluptatem neque eius nesciunt nihil ipsa unde aut delectus earum provident
+                            ratione qui harum eum necessitatibus, voluptates obcaecati?</p>
+                    </div>
+                </div>
             </div>
-            <div class="personal_col">
-                <div class="about_profile">
-                    <h3>Sobre mi:</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, sapiente ratione ut accusamus
-                        explicabo tenetur architecto earum? Dolorum, delectus officia cumque, odio consequuntur aut id
-                        similique voluptatibus eligendi vero hic.</p>
+            <div class="aboutMe">
+                <div class="otherSide">
+                    <div class="About_h3">
+                        <h3>Sobre mi:</h3>
+                    </div>
+                    <div class="About_p">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae sequi, ducimus
+                            delectus aut molestiae aspernatur maiores natus fuga adipisci non ullam molestias sapiente,
+                            in expedita veritatis repellat quisquam rerum!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, earum doloremque voluptatem
+                            dolorum quidem nisi, rem sunt velit nemo cumque voluptas pariatur et explicabo recusandae
+                            exercitationem fugiat modi mollitia? Autem?</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <script src="../static/js/app.js"></script>
 </body>
 

@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
     <link href="../static/styles/forumStyle.css" rel="stylesheet">
     <title>Ingresando a la Facutlad</title>
@@ -34,7 +33,7 @@
                     </li>
                     {% if 'username' in session %}
                     <li>
-                        <a class="anchorsNav" href="/profile">{{ session['username'] }}</a>
+                        <a class="anchorsNav" href="/profile">{{ session.username }}</a>
                     </li>
                     <li>
                         <a href="/logout">Cerrar Sesion</a>
@@ -50,18 +49,26 @@
     </section>
     <section class="postHome" id="forum">
         <div id="left">
-            <form class="container" action="forum" method="post" name="post">
+            <form class="container" action="" method="post" name="forum" autocomplete="off">
                 <h3 class="h3_forum">Crea una publicacion!</h3>
-                <input type="text" class="tituloForm" placeholder="Titulo" name="title" value="{{ request.form.title }}">
-                <input type="text" class="contenidoForm" placeholder="Contenido..." name="content" value="{{ request.form.content }}">
-                <input class="btn btn-success" type="submit" value="Crear">
+                <input type="text" class="tituloForm" placeholder="Titulo" name="title"
+                    value="{{ request.form.title }}">
+                <input type="text" class="contenidoForm" placeholder="Contenido..." name="content"
+                    value="{{ request.form.content }}">
+                <input class="botonForm" type="submit" value="Crear publicacion">
             </form>
+            <div class="container">
+                <h3 class="h3_forum">Publicaciones!</h3>
+                {% if session.username %}
+                {% for post in posts %}
+                <div class="postUser">
+                    <h4> {{ post.title }} </h4>
+                    <p> {{post.content}} </p>
                 </div>
-                <div class="container">
-                    <talbe class="forum tableModule">
-                        asasasas
-                    </talbe>
-                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
         </div>
     </section>
     <script src="../static/js/app.js"></script>

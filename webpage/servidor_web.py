@@ -23,6 +23,7 @@ def login():
                             request.form['username'],
                             request.form['password'])
         if credenciales == None:
+            print(credenciales)
             error = 'Credenciales Invalidas'
         else:
             session['username'] = request.form['username']
@@ -70,25 +71,18 @@ def home():
 @app.route('/forum', methods=['GET', 'POST'])
 def forum():
     error = None
-    if request.method == 'GET':
-        pass
-
     if request.method == 'POST':
         if not autenticacion.crear_foro(
-            session['idUsers'],
-            request.form['title'],
-            request.form['content']):
+                session['idUsers'],
+                request.form['title'],
+                request.form['content']):
             error = "No se pudo crear la publicacion"
         else:
-            return redirect(url_for('forum'))
-    return render_template('forum.html', error = error)
-
-
-@app.route('/forum/<id_forum>', methods = ['GET', 'POST'])
-def oneForum():
-    if request.method == 'GET':
-        return render_template('oneForum.html')
-
+            return redirect(url_for('forum'))w
+    else:
+        posts = autenticacion.obtener_foros()
+    return render_template('forum.html', error = error, posts = posts)
+        
 
 if __name__ == '__main__':
     app.debug = True
