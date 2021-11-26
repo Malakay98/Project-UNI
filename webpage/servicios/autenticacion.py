@@ -21,11 +21,12 @@ def validar_credenciales(username, clave):
 
 
 
-def crear_usuario(usuario, email, nombre, apellido, clave):
+def crear_usuario(usuario, email, nombre, apellido, numero, clave):
     body = {"username": usuario,
             "email": email,
             "firstName": nombre,
             "lastName": apellido,
+            "phoneNumber": numero,
             "password": clave}
     respuesta = requests.post(f'{rest_api.API_URL}/usuarios', json=body)
     # Al igual que en el caso de la validacion, simplificamos el manejo de errores
@@ -34,6 +35,11 @@ def crear_usuario(usuario, email, nombre, apellido, clave):
 
 def obtener_usuarios():
     respuesta = requests.get(f'{rest_api.API_URL}/usuarios')
+    return respuesta.json()
+
+
+def obtener_usuario(id_usuario):
+    respuesta = requests.get(f'{rest_api.API_URL}/usuarios/{id_usuario}')
     return respuesta.json()
 
 
@@ -59,3 +65,10 @@ def obtener_foro(id_forum):
     respuesta = requests.post(f'{rest_api.API_URL}/forum', json = body)
     return respuesta.status_code == 200
 
+
+def eliminar_foro(id_forum):
+    body = {
+        "idForum": id_forum
+    }
+    respuesta = requests.delete(f'{rest_api.API_URL}/forum/{id_forum}', json = body)
+    return respuesta.status_code == 200

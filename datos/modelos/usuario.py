@@ -23,7 +23,7 @@ def getUsers():
 
 def getOneUser(id_usuario):
     obtener_un_usuario_sql = f'''
-       SELECT idUsers, username, email, firstName, lastName
+       SELECT idUsers, username, email, firstName, lastName, photo
        FROM Usuarios
        WHERE idUsers = {id_usuario}
     '''
@@ -32,24 +32,34 @@ def getOneUser(id_usuario):
              'username': registro[1],
              'email': registro[2],
              'firstName': registro[3],
-             'lastName': registro[4]}
+             'lastName': registro[4],
+             'photo': registro[5]}
               #Por cada registro en la base de datos, quiero aplicar la variable con el metodo asignado
              for registro in bd.ejecutar_sql(obtener_un_usuario_sql)]
 
  
-def createUsers(username, email, firstName, lastName, password):
+def createUsers(username, email, firstName, lastName, password, photo, phoneNumber):
     crear_usuario_sql = f"""
-        INSERT INTO Usuarios(username, email, firstName, lastName, password)
-        VALUES ('{username}', '{email}', '{firstName}', '{lastName}', '{password}')
+        INSERT INTO Usuarios(username, email, firstName, lastName, password, photo, phoneNumber)
+        VALUES ('{username}', '{email}', '{firstName}', '{lastName}', '{password}', '{photo}', '{phoneNumber}')
     """
     bd = BaseDeDatos()
     bd.ejecutar_sql(crear_usuario_sql)
-   
+
+
+def createBiography(biography):
+    crear_bio_sql = f"""
+        INSERT INTO Usuarios(biography)
+        VALUES('{biography}')
+    """
+    bd = BaseDeDatos()
+    bd.ejecutar_sql(crear_bio_sql)
+
 
 def editUser(id_usuario, datos_usuario):
     modificar_usuario_sql = f'''
        UPDATE Usuarios
-       SET username='{datos_usuario["username"]}', firstName='{datos_usuario["firstName"]}', lastName='{datos_usuario["lastName"]}', password='{datos_usuario["password"]}'
+       SET username='{datos_usuario["username"]}', firstName='{datos_usuario["firstName"]}', lastName='{datos_usuario["lastName"]}', password='{datos_usuario["password"]}', photo='{datos_usuario["photo"]}', phoneNumber='{datos_usuario["phoneNumber"]}'
        WHERE idUsers='{id_usuario}'
     '''
     bd = BaseDeDatos()
@@ -67,12 +77,12 @@ def deleteUser(id_usuario):
 
 # Tambien podria usar "?" en vez de los parametros, esto para incluir mayor seguridad
 
-def getUsersByFiveParamRegister(username, email, firstName, lastName, password):
+def getUsersByFiveParamRegister(username, password):
     ingresar_datos_sql = f'''
        SELECT idUsers, username, email, firstName, lastName, password
        FROM Usuarios
        WHERE
-       username = '{username}' AND email = '{email}' AND firstName = '{firstName}' AND lastName = '{lastName}' AND password = '{password}'
+       username = '{username}' AND password = '{password}'
     '''
     bd = BaseDeDatos()
     result = bd.ejecutar_sql(ingresar_datos_sql)

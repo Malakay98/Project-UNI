@@ -40,16 +40,20 @@
         <div class="titleBox">
             <div id="titleR"><h1>Registrarse</h1></div>
         </div>
-        <form id="register" action="" method="post" autocomplete="off" class="inputsForm2">
-            <input class="inputsField" type="text" id="username" name="username" placeholder="Usuario" value="{{ request.form.username }}" required>
+        <form id="register" action="" method="post" autocomplete="off" class="inputsForm2" enctype="multipart/form-data">
+            <input class="inputsField" type="text" id="username" name="username" placeholder="Usuario" required>
 
-            <input class="inputsField" type="text" id="email" name="email" placeholder="Correo" value="{{ request.form.email }}" required>
+            <input class="inputsField" type="text" id="email" name="email" placeholder="Correo" required>
 
-            <input class="inputsField" type="text" id="firstName" name="firstName" placeholder="Nombre" value="{{ request.form.firstName }}" required>
+            <input class="inputsField" type="text" id="firstName" name="firstName" placeholder="Nombre" required>
 
-            <input class="inputsField" type="text" id="lastName" name="lastName" placeholder="Apellido" value="{{ request.form.lastName }}" required>
+            <input class="inputsField" type="text" id="lastName" name="lastName" placeholder="Apellido" required>
 
-            <input class="inputsField" type="password" id="password" name="password" placeholder="Clave" value="{{ request.form.password }}" required>
+            <input class="inputsField" type="password" id="password" name="password" placeholder="Clave" required>
+
+            <input class="inputsField" type="number" id="phoneNumber" name="phoneNumber" placeholder="Celular" required>
+
+            <input class="inputsField" type="file" id="photo" name="photo" placeholder="Sube una foto">
             <button class="submitBtn" type="submit">Registrarse</button>
         </form>
         {% if error %}

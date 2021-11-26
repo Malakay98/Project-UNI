@@ -99,7 +99,10 @@ CREATE TABLE IF NOT EXISTS Materias(
 )
 '''
 
-
+sql_agregar_cosas = '''
+ALTER TABLE Usuarios
+ADD COLUMN biography TEXT;
+'''
 
 
 if __name__ == '__main__':
@@ -127,8 +130,8 @@ if __name__ == '__main__':
         print("Tabla de comentarios del foro creada exitosamente")
         cursor.execute(sql_tabla_materias)
         print("Tabla materias creada exitosamente")
-        #cursor.execute(sql_eliminar_tabla)
-        #print("tabla eliminada")
+        cursor.execute(sql_agregar_cosas)
+        print("Se ha actualizado la tabla Usuarios")
         cursor.close()
         print('Creacion Finalizada.')
     except Exception as e:

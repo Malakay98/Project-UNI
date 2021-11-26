@@ -51,19 +51,22 @@
         <div id="left">
             <form class="container" action="" method="post" name="forum" autocomplete="off">
                 <h3 class="h3_forum">Crea una publicacion!</h3>
-                <input type="text" class="tituloForm" placeholder="Titulo" name="title"
+                <label for="title">Titulo</label>
+                <input type="text" class="tituloForm" placeholder="Titulo" name="title" id="title"
                     value="{{ request.form.title }}">
-                <input type="text" class="contenidoForm" placeholder="Contenido..." name="content"
+                <label for="content">Contenido</label>
+                <input type="text" class="contenidoForm" placeholder="Contenido..." name="content" id="content"
                     value="{{ request.form.content }}">
-                <input class="botonForm" type="submit" value="Crear publicacion">
+                <input onclick="location.href='/forum'" class="botonForm" type="submit" value="Crear publicacion">
             </form>
             <div class="container">
                 <h3 class="h3_forum">Publicaciones!</h3>
                 {% if session.username %}
                 {% for post in posts %}
-                <div class="postUser">
-                    <h4> {{ post.title }} </h4>
-                    <p> {{post.content}} </p>
+                <div id="postUserID" class="postUser">
+                    <h4 class="h4_post"> {{ post.title }} </h4>
+                    <p class="p_post"> {{post.content}} </p>
+                    <a href="/forum/delete/{{ post.idForum }}"><i id="crossDelete" class="fa fa-times-circle"></i></a>
                 </div>
                 {% endfor %}
                 {% endif %}

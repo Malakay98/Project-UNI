@@ -68,10 +68,10 @@ nav .fa {
 }
 
 .formBox {
+  margin: 100px auto;
   width: 400px;
   height: 500px;
   position: relative;
-  margin: 10% auto;
   background-color: rgba(250, 250, 250, 0.20);
   padding: 5px;
   border-radius: 20px;
@@ -80,10 +80,10 @@ nav .fa {
 
 
 .formBoxR {
+  margin: 50px auto;
   width: 400px;
-  height: 550px;
+  height: 700px;
   position: relative;
-  margin: 10% auto;
   background-color: rgba(250, 250, 250, 0.20);
   padding: 5px;
   border-radius: 20px;

@@ -18,9 +18,9 @@ def GetUserById(id_usuario):
     return usuarios[0]
 
 
-def createUsers(username, email, firstName, lastName, password):
-    if not userExistforRegister(username, email, firstName, lastName, password):
-        modelo_usuario.createUsers(username, email, firstName, lastName, password)
+def createUsers(username, email, firstName, lastName, password, photo, phoneNumber):
+    if not userExistforRegister(username, password):
+        modelo_usuario.createUsers(username, email, firstName, lastName, password, photo, phoneNumber)
     else:
         raise Exception("Usuario ya existente")
 
@@ -37,8 +37,8 @@ def deleteUser(id_usuario):
 
 
 
-def userExistforRegister(username, email, firstName, lastName, password):
-    usuarios = modelo_usuario.getUsersByFiveParamRegister(username, email, firstName, lastName, password)
+def userExistforRegister(username, password):
+    usuarios = modelo_usuario.getUsersByFiveParamRegister(username, password)
     return usuarios and len(usuarios) > 0
 
 

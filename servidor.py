@@ -1,8 +1,11 @@
 from flask import Flask, request, session, jsonify, render_template
+from werkzeug.utils import secure_filename
 from servicios.autenticacion import autenticacion
 
 app = Flask(__name__)
 app.secret_key = "unaClaveMuySeguraQueDeberiaSerAlmacenadaEn .env"
+
+
 
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
@@ -50,8 +53,18 @@ def crear_usuario():
         return 'El apellido es requerido', 400
     if 'password' not in datos_usuario or datos_usuario['password'] == '':
         return 'La clave es requerida', 400
-    autenticacion.createUsers(datos_usuario['username'], datos_usuario['email'], datos_usuario['firstName'],
-                              datos_usuario['lastName'], datos_usuario['password'])
+    if 'photo' not in datos_usuario or datos_usuario['photo'] == '':
+        return 'Una foto es requerida', 400
+    if 'phoneNumber' not in datos_usuario or datos_usuario['phoneNumber'] == '':
+        return 'El telefono es requerido', 400
+
+    autenticacion.createUsers(datos_usuario['username'],
+                              datos_usuario['email'],
+                              datos_usuario['firstName'],
+                              datos_usuario['lastName'],
+                              datos_usuario['password'],
+                              datos_usuario['photo'],
+                              datos_usuario['phoneNumber'])
     
     return jsonify(f'Usuario creado exitosamente. Usuario: ',
                    datos_usuario), 200  # Codigo de estado "200": informa que todo se ha procesado de manera correcta.
@@ -109,7 +122,7 @@ def obtener_foro(id_forum):
 def crear_foro():
     datos_foro = request.get_json()
     try:
-        idUser = session['idUser']
+        idUser = datos_foro['author']
     except:
         return 'Debes estar logeado para crear un foro.'
 
@@ -195,6 +208,10 @@ def editar_noticia(id_new):
         return "Porfavor, modifica la descripcion", 400
     autenticacion.editNew(id_new, datos_noticias)
     return "Noticia modificada", 200
+
+
+# ||| UPLOAD IMAGES AND FILES |||
+
 
 
 

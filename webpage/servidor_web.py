@@ -1,14 +1,17 @@
-from flask import Flask, request, redirect, url_for, session
-from flask import render_template
+from flask import Flask, request, redirect, url_for, session, render_template
+from werkzeug.utils import secure_filename
 from time import time
-import json
 from webpage.servicios import autenticacion
-import os.path
-import os
+
+UPLOAD_FOLDER = '/static/img/upload'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = 'BAD_SECRET_KEY'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
-app.secret_key = 'BAD_SECRET_KEY'
 
 @app.route('/', methods=['GET'])
 def index():
@@ -38,9 +41,17 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
-    return render_template("profile.html")
+    if not session:
+        return redirect(url_for('login'))
+    if request.method == 'GET':
+        usuario = autenticacion.obtener_usuario(session['idUsers'])
+        return render_template("profile.html", usuario = usuario)
+    else:
+        return redirect(url_for('profile'))
+
+
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -54,7 +65,8 @@ def register():
             request.form['username'], 
             request.form['email'], 
             request.form['firstName'],
-            request.form['lastName'], 
+            request.form['lastName'],
+            request.form['phoneNumber'],
             request.form['password']):
             error = 'No se pudo crear el usuario'
         else:
@@ -67,7 +79,7 @@ def home():
     return render_template('home.html')
 
 
-# Problema principal, no puedo crear una publicacion que se muestre en la misma pagina del foro
+
 @app.route('/forum', methods=['GET', 'POST'])
 def forum():
     error = None
@@ -78,11 +90,28 @@ def forum():
                 request.form['content']):
             error = "No se pudo crear la publicacion"
         else:
-            return redirect(url_for('forum'))w
+            return redirect(url_for('forum'))
     else:
         posts = autenticacion.obtener_foros()
     return render_template('forum.html', error = error, posts = posts)
-        
+
+
+@app.route('/forum/delete/<id_forum>', methods=['GET'])
+def deleteForum(id_forum):
+    error = None
+    if not autenticacion.eliminar_foro(id_forum):
+        error = "No se pudo eliminar la publicacion"
+    else:
+        return redirect(url_for('forum'))
+    return render_template('forum.html', error = error)
+
+
+
+@app.route('/forum', methods=['DELETE'])
+def delete(id_forum):
+    if autenticacion.eliminar_foro(id_forum):
+        return redirect(url_for('forum'))
+     
 
 if __name__ == '__main__':
     app.debug = True
