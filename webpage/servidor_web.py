@@ -6,7 +6,6 @@ from webpage.servicios import autenticacion
 UPLOAD_FOLDER = '/static/img/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = 'BAD_SECRET_KEY'
@@ -17,14 +16,15 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 def index():
     return render_template('index.html')
 
+
 # Aqui estuvimos teniendo muchos cambios con el session. Luego de estos cambios, dejo de funcionar mi Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         credenciales = autenticacion.validar_credenciales(
-                            request.form['username'],
-                            request.form['password'])
+            request.form['username'],
+            request.form['password'])
         if credenciales == None:
             print(credenciales)
             error = 'Credenciales Invalidas'
@@ -32,7 +32,7 @@ def login():
             session['username'] = request.form['username']
             session['idUsers'] = credenciales
             return redirect(url_for('home'))
-    return render_template('login.html', error = error)
+    return render_template('login.html', error=error)
 
 
 @app.route('/logout')
@@ -47,11 +47,9 @@ def profile():
         return redirect(url_for('login'))
     if request.method == 'GET':
         usuario = autenticacion.obtener_usuario(session['idUsers'])
-        return render_template("profile.html", usuario = usuario)
+        return render_template("profile.html", usuario=usuario)
     else:
         return redirect(url_for('profile'))
-
-
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -62,22 +60,21 @@ def register():
 
     if request.method == 'POST':
         if not autenticacion.crear_usuario(
-            request.form['username'], 
-            request.form['email'], 
-            request.form['firstName'],
-            request.form['lastName'],
-            request.form['phoneNumber'],
-            request.form['password']):
+                request.form['username'],
+                request.form['email'],
+                request.form['firstName'],
+                request.form['lastName'],
+                request.form['password'],
+                request.form['phoneNumber']):
             error = 'No se pudo crear el usuario'
         else:
             return redirect(url_for('login'))
-    return render_template('register.html', error = error)
+    return render_template('register.html', error=error)
 
 
 @app.route('/home', methods=['GET'])
 def home():
     return render_template('home.html')
-
 
 
 @app.route('/forum', methods=['GET', 'POST'])
@@ -93,7 +90,7 @@ def forum():
             return redirect(url_for('forum'))
     else:
         posts = autenticacion.obtener_foros()
-    return render_template('forum.html', error = error, posts = posts)
+    return render_template('forum.html', error=error, posts=posts)
 
 
 @app.route('/forum/delete/<id_forum>', methods=['GET'])
@@ -103,16 +100,15 @@ def deleteForum(id_forum):
         error = "No se pudo eliminar la publicacion"
     else:
         return redirect(url_for('forum'))
-    return render_template('forum.html', error = error)
-
+    return render_template('forum.html', error=error)
 
 
 @app.route('/forum', methods=['DELETE'])
 def delete(id_forum):
     if autenticacion.eliminar_foro(id_forum):
         return redirect(url_for('forum'))
-     
+
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(port = 3000)
+    app.run(port=3000)

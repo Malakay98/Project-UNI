@@ -4,7 +4,7 @@ from datos.base_de_datos import BaseDeDatos
 #No necesito parametros en esta ocasion, por que no habran valores especificos que se necesiten para la peticion HTTP
 def getUsers():
     obtener_usuarios_sql = f"""
-       SELECT idUsers, username, email, firstName, lastName, password, id_Rol
+       SELECT idUsers, username, email, firstName, lastName, password, id_Rol, phoneNumber
        FROM Usuarios
     """
     # Llamo a la clase basededatos y la igualo con una variable
@@ -16,14 +16,15 @@ def getUsers():
              'firstName': registro[3],
              'lastName': registro[4],
              'password': registro[5],
-             'id_Rol': registro[6]}
+             'id_Rol': registro[6],
+             'phoneNumber': registro[7]}
               #Por cada registro en la base de datos, quiero aplicar la variable con el metodo asignado
              for registro in bd.ejecutar_sql(obtener_usuarios_sql)]
 
 
 def getOneUser(id_usuario):
     obtener_un_usuario_sql = f'''
-       SELECT idUsers, username, email, firstName, lastName, photo
+       SELECT idUsers, username, email, firstName, lastName, photo, phoneNumber
        FROM Usuarios
        WHERE idUsers = {id_usuario}
     '''
@@ -33,15 +34,16 @@ def getOneUser(id_usuario):
              'email': registro[2],
              'firstName': registro[3],
              'lastName': registro[4],
-             'photo': registro[5]}
+             'photo': registro[5],
+             'phoneNumber': registro[6]}
               #Por cada registro en la base de datos, quiero aplicar la variable con el metodo asignado
              for registro in bd.ejecutar_sql(obtener_un_usuario_sql)]
 
  
-def createUsers(username, email, firstName, lastName, password, photo, phoneNumber):
+def createUsers(username, email, firstName, lastName, password, phoneNumber):
     crear_usuario_sql = f"""
-        INSERT INTO Usuarios(username, email, firstName, lastName, password, photo, phoneNumber)
-        VALUES ('{username}', '{email}', '{firstName}', '{lastName}', '{password}', '{photo}', '{phoneNumber}')
+        INSERT INTO Usuarios(username, email, firstName, lastName, password, phoneNumber)
+        VALUES ('{username}', '{email}', '{firstName}', '{lastName}', '{password}', '{phoneNumber}')
     """
     bd = BaseDeDatos()
     bd.ejecutar_sql(crear_usuario_sql)
@@ -68,8 +70,8 @@ def editUser(id_usuario, datos_usuario):
 
 def deleteUser(id_usuario):
     eliminar_usuario_sql = f'''
-        DELETE 
-        FROM Usuarios 
+        DELETE
+        FROM Usuarios
         WHERE idUsers = '{id_usuario}'
     '''
     bd = BaseDeDatos()

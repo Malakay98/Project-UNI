@@ -18,9 +18,9 @@ def GetUserById(id_usuario):
     return usuarios[0]
 
 
-def createUsers(username, email, firstName, lastName, password, photo, phoneNumber):
+def createUsers(username, email, firstName, lastName, password, phoneNumber):
     if not userExistforRegister(username, password):
-        modelo_usuario.createUsers(username, email, firstName, lastName, password, photo, phoneNumber)
+        modelo_usuario.createUsers(username, email, firstName, lastName, password, phoneNumber)
     else:
         raise Exception("Usuario ya existente")
 

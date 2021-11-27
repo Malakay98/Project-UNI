@@ -53,19 +53,10 @@ def crear_usuario():
         return 'El apellido es requerido', 400
     if 'password' not in datos_usuario or datos_usuario['password'] == '':
         return 'La clave es requerida', 400
-    if 'photo' not in datos_usuario or datos_usuario['photo'] == '':
-        return 'Una foto es requerida', 400
     if 'phoneNumber' not in datos_usuario or datos_usuario['phoneNumber'] == '':
         return 'El telefono es requerido', 400
-
-    autenticacion.createUsers(datos_usuario['username'],
-                              datos_usuario['email'],
-                              datos_usuario['firstName'],
-                              datos_usuario['lastName'],
-                              datos_usuario['password'],
-                              datos_usuario['photo'],
-                              datos_usuario['phoneNumber'])
-    
+    print(datos_usuario)
+    autenticacion.createUsers(datos_usuario['username'], datos_usuario['email'], datos_usuario['firstName'], datos_usuario['lastName'], datos_usuario['password'], datos_usuario['phoneNumber'])
     return jsonify(f'Usuario creado exitosamente. Usuario: ',
                    datos_usuario), 200  # Codigo de estado "200": informa que todo se ha procesado de manera correcta.
 

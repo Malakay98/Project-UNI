@@ -166,13 +166,18 @@ label {
 }
 
 .userPhone {
-  color: #000000;
+  margin: 10px;
+  color: #1e222c;
   font-weight: 400;
+  font-size: 18px;
 }
 
-.userEmail {
-  color: #000000;
+.userDataSide {
+  display: inline-block;
+  margin: 10px;
+  color: #1e222c;
   font-weight: 400;
+  font-size: 18px;
 }
 
 .aboutMe {

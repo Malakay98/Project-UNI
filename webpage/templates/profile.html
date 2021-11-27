@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/0a3a5df494.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="../static/styles/profileStyle.css" rel="stylesheet">
     <title>Ingresando a la Facutlad</title>
 </head>
@@ -51,19 +52,15 @@
             </div>
             <div class="profileInfo">
                 <h3 class="userName">{{ usuario.firstName }} {{ usuario.lastName }}</h3>
-                <p class="city">Minas, Lavalleja</p>
+                <p class="userYear">Estudiante primer a&ntilde;o</p>
             </div>
         </div>
         <div class="mainInfo">
             <div class="leftSide">
                 <div class="profileSide">
-                    <label>Numero: <p class="userPhone"> {{ usuario.phoneNumber }} </p></label>
-                    <label>Email: <p class="userEmail"> {{ usuario.email }} </p></label>
-                    <div class="userBio">
-                        <p class="bio">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse quasi deleniti
-                            sapiente, voluptatem neque eius nesciunt nihil ipsa unde aut delectus earum provident
-                            ratione qui harum eum necessitatibus, voluptates obcaecati?</p>
-                    </div>
+                    <label>Email: <p class="userDataSide"> {{ usuario.email }} </p></label>
+                    <label>Departamento: <p class="userDataSide"> Lavalleja </p></label>
+                    <label>Ciudad: <p class="userDataSide"> Minas </p></label>
                 </div>
             </div>
             <div class="aboutMe">
@@ -83,7 +80,12 @@
             </div>
         </div>
     </div>
-    <script src="../static/js/app.js"></script>
+    <script type="text/javascript">
+        jQuery.get('http://ipinfo.io', function(e){
+            console.log(e)
+        }, "jsonp")
+    </script>
+    <script type="text/javascript" src="../static/js/app.js"></script>
 </body>
 
 </html>

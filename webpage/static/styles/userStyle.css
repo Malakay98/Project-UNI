@@ -185,7 +185,6 @@ p {
   position: absolute;
   top: 120px;
   left: 50px;
-  border: 1px solid #dd1616b2;
 }
 
 @media (max-width: 700px) {
