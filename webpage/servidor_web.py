@@ -1,9 +1,14 @@
 from flask import Flask, request, redirect, url_for, session, render_template
+import requests
 from werkzeug.utils import secure_filename
 from time import time
+import os
+import urllib.request
 from webpage.servicios import autenticacion
 
-UPLOAD_FOLDER = '/static/img/upload'
+
+
+UPLOAD_FOLDER = '/static/img/upload/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__)
@@ -108,6 +113,32 @@ def delete(id_forum):
     if autenticacion.eliminar_foro(id_forum):
         return redirect(url_for('forum'))
 
+# SUBIR FOTOS
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['POST'])
+def upload_file():
+    error = None
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('upload image filename: ' + filename)
+            return render_template('profile.html', filename = filename)
+        else:
+            return redirect("Los archivos permitidos son: png, jpg y jpeg" + request.url, error = error)
+
+
+@app.route('/display/<filename>', methods=['GET', 'POST'])
+def display_image(filename):
+    return redirect(url_for('static', filename='upload/' + filename), 301)
 
 if __name__ == '__main__':
     app.debug = True

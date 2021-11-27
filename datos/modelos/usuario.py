@@ -49,6 +49,7 @@ def createUsers(username, email, firstName, lastName, password, phoneNumber):
     bd.ejecutar_sql(crear_usuario_sql)
 
 
+
 def createBiography(biography):
     crear_bio_sql = f"""
         INSERT INTO Usuarios(biography)

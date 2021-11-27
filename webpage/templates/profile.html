@@ -48,7 +48,21 @@
     <div class="container">
         <div class="profileHeader">
             <div class="imgProfile">
-                <img src="/webpage/static/img/upload/pathfinder.jpeg" width="200" alt="photoProfile">
+                {% if filename %}
+                    <div class="profilePhoto">
+                        <img src="{{ url_for('display_image', filename = filename) }}">
+                    </div>
+                {% endif %}
+                <form enctype="multipart/form-data" action="" method="post">
+                    <dl>
+                        <p>
+                            <input type="file" name="filename" class="form-control" autocomplete="off" required>
+                        </p>
+                    </dl>
+                    <p>
+                       <input type="submit" value="Subir una foto de perfil" class="btn btn-info">
+                    </p>
+                </form>
             </div>
             <div class="profileInfo">
                 <h3 class="userName">{{ usuario.firstName }} {{ usuario.lastName }}</h3>
@@ -80,11 +94,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        jQuery.get('http://ipinfo.io', function(e){
-            console.log(e)
-        }, "jsonp")
-    </script>
     <script type="text/javascript" src="../static/js/app.js"></script>
 </body>
 
