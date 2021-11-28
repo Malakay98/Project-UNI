@@ -21,13 +21,14 @@ def validar_credenciales(username, clave):
 
 
 
-def crear_usuario(usuario, email, nombre, apellido, clave, numero):
+def crear_usuario(usuario, email, nombre, apellido, clave, region, city):
     body = {"username": usuario,
             "email": email,
             "firstName": nombre,
             "lastName": apellido,
             "password": clave,
-            "phoneNumber": numero}
+            "region": region,
+            "city": city}
     respuesta = requests.post(f'{rest_api.API_URL}/usuarios', json=body)
     # Al igual que en el caso de la validacion, simplificamos el manejo de errores
     return respuesta.status_code == 200

@@ -1,5 +1,4 @@
 from flask import Flask, request, redirect, url_for, session, render_template
-import requests
 from werkzeug.utils import secure_filename
 from time import time
 import os
@@ -8,13 +7,12 @@ from webpage.servicios import autenticacion
 
 
 
-UPLOAD_FOLDER = '/static/img/upload/'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-
 app = Flask(__name__)
+app.secret_key = "unaClaveMuySeguraQueDeberiaSerAlmacenadaEn .env"
+
+UPLOAD_FOLDER = 'images/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SECRET_KEY'] = 'BAD_SECRET_KEY'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 
 @app.route('/', methods=['GET'])
@@ -52,7 +50,7 @@ def profile():
         return redirect(url_for('login'))
     if request.method == 'GET':
         usuario = autenticacion.obtener_usuario(session['idUsers'])
-        return render_template("profile.html", usuario=usuario)
+        return render_template("profile.html", usuario = usuario)
     else:
         return redirect(url_for('profile'))
 
@@ -70,7 +68,8 @@ def register():
                 request.form['firstName'],
                 request.form['lastName'],
                 request.form['password'],
-                request.form['phoneNumber']):
+                request.form['region'],
+                request.form['city']):
             error = 'No se pudo crear el usuario'
         else:
             return redirect(url_for('login'))
@@ -107,38 +106,6 @@ def deleteForum(id_forum):
         return redirect(url_for('forum'))
     return render_template('forum.html', error=error)
 
-
-@app.route('/forum', methods=['DELETE'])
-def delete(id_forum):
-    if autenticacion.eliminar_foro(id_forum):
-        return redirect(url_for('forum'))
-
-# SUBIR FOTOS
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/', methods=['POST'])
-def upload_file():
-    error = None
-    if request.method == 'POST':
-        if 'file' not in request.files:
-            return redirect(request.url)
-        file = request.files['file']
-        if file.filename == '':
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('upload image filename: ' + filename)
-            return render_template('profile.html', filename = filename)
-        else:
-            return redirect("Los archivos permitidos son: png, jpg y jpeg" + request.url, error = error)
-
-
-@app.route('/display/<filename>', methods=['GET', 'POST'])
-def display_image(filename):
-    return redirect(url_for('static', filename='upload/' + filename), 301)
 
 if __name__ == '__main__':
     app.debug = True

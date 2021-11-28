@@ -85,7 +85,7 @@ nav .fa {
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #323a7c;
+  background-color: #0f7999;
   overflow-x: hidden;
   padding-top: 10px;
   margin: 5px 20px;
@@ -93,6 +93,7 @@ body {
 
 .profileHeader {
   margin: 100px 0px 0px 0px;
+  padding: 20px;
   background-color: #ffffff;
   width: 100%;
   display: flex;
@@ -102,6 +103,12 @@ body {
   border-radius: 2px;
 }
 
+.imageUpload {
+  display: inline-block;
+  text-align: center;
+  margin: 40px auto;
+  width: 100%;
+}
 
 .imgProfile {
   float: left;
@@ -113,12 +120,11 @@ body {
   border-radius: 50%;
   height: 250px;
   width: 250px;
-  border: 5px solid #323a7c;
+  border: 5px solid #1c32f8;
   box-shadow: 5px 8px 10px rgba(0,0,0, .2);
   position: absolute;
-  top: 50px;
-  left: 30px;
-  z-index: 5;
+  top: 250px;
+  left: 25px;
 }
 
 
@@ -133,7 +139,7 @@ body {
 }
 
 .profileInfo h3 {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
 }
 
@@ -151,25 +157,33 @@ body {
 }
 
 .profileSide {
+  display: inline-block;
   width: 300px;
   height: 500px;
   background-color: #e9e6e6;
   box-shadow: 3px 4px 6px rgba(0,0,0, .2);
-  padding: 30px;
-  padding-top: 120px;
+  padding-top: 270px;
+  padding-left: 30px;
   text-align: left;
+}
+
+.form-control {
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
 }
 
 label {
   color: #2ca8ff;
   font-weight: 800;
-}
-
-.userPhone {
-  margin: 10px;
-  color: #1e222c;
-  font-weight: 400;
-  font-size: 18px;
 }
 
 .userDataSide {
@@ -181,7 +195,8 @@ label {
 }
 
 .aboutMe {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   font-family: "Roboto", sans-serif;
   background-color: #ffffff;
   padding: 30px;
@@ -192,7 +207,7 @@ label {
   color: #141735;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   body {
     overflow-x: hidden;
 

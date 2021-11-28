@@ -48,19 +48,17 @@
     <div class="container">
         <div class="profileHeader">
             <div class="imgProfile">
-                {% if filename %}
                     <div class="profilePhoto">
-                        <img src="{{ url_for('display_image', filename = filename) }}">
+                        <img size="200" src="{{'http://localhost:2400/images/' + usuario.idUsers|string + '.jpg'}}">
                     </div>
-                {% endif %}
-                <form enctype="multipart/form-data" action="" method="post">
+                <form enctype="multipart/form-data" action="{{'http://localhost:2400/upload_pfp/' + usuario.idUsers|string}}" method="post" class="imageUpload">
                     <dl>
                         <p>
-                            <input type="file" name="filename" class="form-control" autocomplete="off" required>
+                            <input type="file" name="file" class="form-control" autocomplete="off" required>
                         </p>
                     </dl>
                     <p>
-                       <input type="submit" value="Subir una foto de perfil" class="btn btn-info">
+                       <input type="submit" value="Subir una foto de perfil" class="btn btn-info" onchange="this.submit()">
                     </p>
                 </form>
             </div>
@@ -73,8 +71,8 @@
             <div class="leftSide">
                 <div class="profileSide">
                     <label>Email: <p class="userDataSide"> {{ usuario.email }} </p></label>
-                    <label>Departamento: <p class="userDataSide"> Lavalleja </p></label>
-                    <label>Ciudad: <p class="userDataSide"> Minas </p></label>
+                    <label>Departamento: <p class="userDataSide"> {{ usuario.region }} </p></label>
+                    <label>Ciudad: <p class="userDataSide"> {{ usuario.city }} </p></label>
                 </div>
             </div>
             <div class="aboutMe">

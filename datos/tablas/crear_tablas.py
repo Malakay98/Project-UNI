@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS Materias(
 
 sql_agregar_cosas = '''
 ALTER TABLE Usuarios
-ADD COLUMN biography TEXT;
+ADD COLUMN region TEXT;
 '''
 
 

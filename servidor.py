@@ -1,26 +1,17 @@
-from flask import Flask, request, session, jsonify, render_template
+from flask import Flask, request, session, jsonify, send_file, redirect, url_for
 from werkzeug.utils import secure_filename
 from servicios.autenticacion import autenticacion
+import os
 
 app = Flask(__name__)
 app.secret_key = "unaClaveMuySeguraQueDeberiaSerAlmacenadaEn .env"
 
-
-
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
-def getIndex():
-    return render_template('index.html')
-
-
-
+UPLOAD_FOLDER = 'images/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 # ||| USUARIOS |||
-
-
-
-
 
 
 # Obtener los datos de todos los usuarios.
@@ -52,11 +43,13 @@ def crear_usuario():
     if 'lastName' not in datos_usuario or datos_usuario['lastName'] == '':
         return 'El apellido es requerido', 400
     if 'password' not in datos_usuario or datos_usuario['password'] == '':
-        return 'La clave es requerida', 400
-    if 'phoneNumber' not in datos_usuario or datos_usuario['phoneNumber'] == '':
-        return 'El telefono es requerido', 400
+        return 'La Clave es requerida', 400
+    if 'region' not in datos_usuario or datos_usuario['region'] == '':
+        return 'El Departamento es requerido', 400
+    if 'city' not in datos_usuario or datos_usuario['city'] == '':
+        return 'La Ciudad es requerida', 400
     print(datos_usuario)
-    autenticacion.createUsers(datos_usuario['username'], datos_usuario['email'], datos_usuario['firstName'], datos_usuario['lastName'], datos_usuario['password'], datos_usuario['phoneNumber'])
+    autenticacion.createUsers(datos_usuario['username'], datos_usuario['email'], datos_usuario['firstName'], datos_usuario['lastName'], datos_usuario['password'], datos_usuario['region'], datos_usuario['city'])
     return jsonify(f'Usuario creado exitosamente. Usuario: ',
                    datos_usuario), 200  # Codigo de estado "200": informa que todo se ha procesado de manera correcta.
 
@@ -203,6 +196,34 @@ def editar_noticia(id_new):
 
 # ||| UPLOAD IMAGES AND FILES |||
 
+# SUBIR FOTOS
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload_pfp', methods=['POST'])
+@app.route('/upload_pfp/<int:idUsers>', methods=['POST'])
+def upload_pfp(idUsers:int=None):
+    # idUser = session['idUsers']
+    if 'file' not in request.files:
+        return 'file is required', 400
+
+    file = request.files['file']
+    if file.filename == '':
+        return 'file is required', 400
+    if file and allowed_file(file.filename):
+        # ext = file.filename.rsplit(".", 1)[1].lower()
+        # filename = secure_filename(f'{idUser}.{ext}')
+        filename = secure_filename(f'{idUsers}.jpg')
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return 'Ok, vuelve atras', 200
+
+
+@app.route("/images/<resource>")
+def getImage(resource: str):
+    print(os.path.join(UPLOAD_FOLDER, resource))
+    return send_file(os.path.join(UPLOAD_FOLDER, resource))
 
 
 
