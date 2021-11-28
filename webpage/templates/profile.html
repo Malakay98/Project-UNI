@@ -46,50 +46,37 @@
         <i class="fa fa-bars" onclick="showMenu()"></i>
     </nav>
     <div class="container">
-        <div class="profileHeader">
-            <div class="imgProfile">
-                    <div class="profilePhoto">
-                        <img size="200" src="{{'http://localhost:2400/images/' + usuario.idUsers|string + '.jpg'}}">
-                    </div>
-                <form enctype="multipart/form-data" action="{{'http://localhost:2400/upload_pfp/' + usuario.idUsers|string}}" method="post" class="imageUpload">
-                    <dl>
-                        <p>
-                            <input type="file" name="file" class="form-control" autocomplete="off" required>
-                        </p>
-                    </dl>
-                    <p>
-                       <input type="submit" value="Subir una foto de perfil" class="btn btn-info" onchange="this.submit()">
-                    </p>
-                </form>
-            </div>
-            <div class="profileInfo">
-                <h3 class="userName">{{ usuario.firstName }} {{ usuario.lastName }}</h3>
-                <p class="userYear">Estudiante primer a&ntilde;o</p>
-            </div>
+        <!-- <img size="200" src="{{'http://localhost:2400/images/' + usuario.idUsers|string + '.jpg'}}"> -->
+        <img size="100" src="/images/ariana.jpg">
+        <form enctype="multipart/form-data" action="{{'http://localhost:2400/upload_pfp/' + usuario.idUsers|string}}" method="post" class="form-image">
+            <dl>
+                <p>
+                    <input type="file" name="file" class="form-control" autocomplete="off" required>
+                </p>
+            </dl>
+            <p>
+                <input type="submit" value="Subir una foto de perfil" class="btn btn-info" onchange="this.submit()">
+            </p>
+        </form>
+        <div class="container-mainInfo">
+            <h3 class="userName">{{ usuario.firstName }} {{ usuario.lastName }}</h3>
+            <p class="userYear">Estudiante primer a&ntilde;o</p>
         </div>
-        <div class="mainInfo">
-            <div class="leftSide">
-                <div class="profileSide">
-                    <label>Email: <p class="userDataSide"> {{ usuario.email }} </p></label>
-                    <label>Departamento: <p class="userDataSide"> {{ usuario.region }} </p></label>
-                    <label>Ciudad: <p class="userDataSide"> {{ usuario.city }} </p></label>
-                </div>
-            </div>
-            <div class="aboutMe">
-                <div class="otherSide">
-                    <div class="About_h3">
-                        <h3>Sobre mi:</h3>
-                    </div>
-                    <div class="About_p">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae sequi, ducimus
-                            delectus aut molestiae aspernatur maiores natus fuga adipisci non ullam molestias sapiente,
-                            in expedita veritatis repellat quisquam rerum!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, earum doloremque voluptatem
-                            dolorum quidem nisi, rem sunt velit nemo cumque voluptas pariatur et explicabo recusandae
-                            exercitationem fugiat modi mollitia? Autem?</p>
-                    </div>
-                </div>
-            </div>
+    </div>
+    <div class="container-subInfo">
+        <div class="containers-labels">
+        <label>Email: <p class="userDataSide"> {{ usuario.email }} </p></label>
+        <label>Departamento: <p class="userDataSide"> {{ usuario.region }} </p></label>
+        <label>Ciudad: <p class="userDataSide"> {{ usuario.city }} </p></label>
+        </div>
+        <div class="container-about">
+            <h3>Sobre mi:</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae sequi, ducimus
+                delectus aut molestiae aspernatur maiores natus fuga adipisci non ullam molestias sapiente,
+                in expedita veritatis repellat quisquam rerum!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, earum doloremque voluptatem
+                dolorum quidem nisi, rem sunt velit nemo cumque voluptas pariatur et explicabo recusandae
+                exercitationem fugiat modi mollitia? Autem?</p>
         </div>
     </div>
     <script type="text/javascript" src="../static/js/app.js"></script>
